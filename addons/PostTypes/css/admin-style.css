@@ -1,0 +1,16 @@
+/*
+File Name: 		admin-style.css
+Author: 		Randy Hicks | VisualComa
+Author URI: 	http://visualcoma.com
+Version: 		0.0.1
+Theme URI: 		http://visualcoma.com
+Package: 		ParentTheme_VC
+License: 		GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+#################################################################################################### */
+
+
+.icon32-posts-downloads, #icon-downloads-icon { background:url('../images/downloads-32x32.png') left top no-repeat !important; }
+
+.column-order { width:5em; }
+.column-image { width:4em; }
+.column-tax { width:8em; }

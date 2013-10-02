@@ -1,0 +1,447 @@
+/* 
+File Name default.css
+Version 2.0
+Updated 07.08.13
+Package ParentTheme_VC
+License GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+#################################################################################################### */
+
+
+/*
+Google Fonts
+http://www.google.com/fonts#UsePlace:use/Collection:Carrois+Gothic
+font-family: 'Carrois Gothic', Arial, Verdana, Helvetica, sans-serif;
+*/
+
+
+body { color:#464646; line-height:26px; font-family:Arial, Verdana, Helvetica; background:url('../images/bg-page.jpg') center top no-repeat; }
+#page { font-size:16px; min-height:100%; }
+
+a, a:visited { color:#d54e21; text-decoration:none; opacity:1;
+	-webkit-transition:all 0.1s ease-in; -moz-transition:all 0.1s ease-in; -o-transition:all 0.1s ease-in; transition:all 0.1s ease-in;
+}
+a:hover { opacity:0.7; }
+
+.h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, h5, .h6, h6 { color:#464646; 
+	font-family:'Carrois Gothic', Arial, Verdana, Helvetica, sans-serif; font-weight:400; display:block; line-height:1.1em; 
+}
+.h1, h1 { font-size:64px; text-shadow:0 1px 2px rgba( 70,70,70,0.50 ); }
+.h2, h2 { font-size:48px; text-shadow:0 1px 2px rgba( 70,70,70,0.50 ); }
+.h3, h3 { font-size:36px; }
+.h4, h4 { font-size:28px; }
+.h5, h5 { font-size:24px; }
+.h6, h6 { font-size:18px; }
+.h7 { font-size:16px; }
+
+/*
+.border-radius { border-radius:7px; -moz-border-radius:7px; -webkit-border-radius:7px; -o-border-radius:7px; }
+.box-shadow { box-shadow:0 1px 3px rgba(0,0,0,0.5); -moz-box-shadow:0 1px 3px rgba(0,0,0,0.5); -webkit-box-shadow:0 1px 3px rgba(0,0,0,0.5); -o-box-shadow:0 1px 3px rgba(0,0,0,0.5); }
+.blur { filter: blur(5px); -webkit-filter: blur(5px); -moz-filter: blur(5px); -o-filter: blur(5px); -ms-filter: blur(5px); }
+.trasition { -webkit-transition:all 0.1s ease-in; -moz-transition:all 0.1s ease-in; -o-transition:all 0.1s ease-in; transition:all 0.1s ease-in; }
+*/
+
+
+
+.light-gray { color:#e2e2e2; }
+
+
+
+
+
+
+/* Buttons
+#################################################################################################### */
+button,
+input[type="button"],
+input[type="submit"],
+.btn { cursor:pointer; display:inline-block; padding:8px 20px; color:#fff; font-size:18px; line-height:1.1em; opacity:1;
+	box-shadow:0 1px 2px rgba(0,0,0,0.15); -moz-box-shadow:0 3px 5px rgba(0,0,0,0.15); -webkit-box-shadow:0 3px 5px rgba(0,0,0,0.15); -o-box-shadow:0 3px 5px rgba(0,0,0,0.15);
+	-webkit-transition:all 0.1s ease-in; -moz-transition:all 0.1s ease-in; -o-transition:all 0.1s ease-in; transition:all 0.1s ease-in;
+	border:none; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; -o-border-radius:4px;
+}
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+.btn:hover { opacity:0.7; }
+
+.btn-orange { background:#d54e21; }
+.btn-red { background:#af3222; }
+.btn-blue { background:#21759b; }
+.btn-gray { background:#464646; }
+.btn-med-gray { background:#a0a0a0; }
+
+button,
+input[type="button"],
+input[type="submit"],
+.btn-light-gray { background:#e2e2e2; color:#464646; }
+
+
+
+
+
+
+/* Cform Rest
+#################################################################################################### */
+
+.linklove { display:none; }
+.cf_hidden { display:none; }
+form.cform {}
+form.cform ol { margin:0; list-style:none; }
+form.cform ol li {}
+form.cform input[type="text"] { }
+form.cform textarea { display:block; }
+span.reqtxt, span.emailreqtxt { font-size:10px; font-style:italic; display:none; }
+form.cform .cf_li_err,
+form.cform .cf_li_err label { color:red !important; }
+form.cform input.cf_error { border:solid 1px red; }
+form.cform #usermessagea { padding:10px 0; }
+form.cform .failure { color:red; text-align:center; padding-bottom:7px; }
+
+
+
+
+
+
+/* Forms
+#################################################################################################### */
+input, textarea {}
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="email"]
+{ 
+	color:#464646; font-size:14px; font-family:'Carrois Gothic', Arial, Verdana, Helvetica, sans-serif; 
+	background:#e2e2e2; border:none; padding:8px 12px; 
+	border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; -o-border-radius:4px;
+}
+textarea { width:94%; height:100px; }
+
+label.error { color:red; }
+button,
+input[type="button"],
+input[type="submit"] { display:block; margin-top:7px; }
+
+
+
+/*Sidebar*/
+.mc_interests_header,
+form label { color:#464646; font-size:18px; line-height:23px; display:inline-block; width:100px; }
+form input { display:inline-block; }
+form select { width:80%; display:block; }
+
+
+
+/*MailChimp*/
+.mc_merge_var { margin-bottom:7px; }
+.mc_help { font-size:11px; font-style:italic; display:block; }
+#mc-indicates-required { display:none; }
+
+.mc_signup_submit { margin-top:10px; display:block; text-align:left; }
+
+
+
+/*Footer*/
+#footer .mc_interests_header,
+#footer .sidebar label { color:#e2e2e2; }
+
+
+
+
+
+
+/* Images
+Usage - class="img img-name-here" -- allows controlled image sizes for retina display
+#################################################################################################### */
+.img img { max-width:100%; height:auto; }
+
+.img-name-here { display:block; width:512px; height:512px; }
+
+
+
+
+
+
+/* Blocks
+#################################################################################################### */
+
+.outer-wrap { position:relative; }
+.inner-wrap { max-width:920px; position:relative; margin:0 auto; text-align:left; }
+
+
+
+/*Header*/
+#header .inner-wrap { padding:40px 0; text-align:center; color:#fff; text-shadow:0 1px 2px rgba( 70,70,70,0.50 ); }
+#header .inner-wrap a { color:#fff; }
+#header .h1, #header .h4 { color:#fff; }
+
+
+
+/*Primary Content*/
+#content-wrap .inner-wrap { background:#fff; padding:40px 20px; }
+
+
+
+
+
+
+/* General Links
+#################################################################################################### */
+
+
+/* Main Navigation Links */
+#primary-navigation { height:50px; font-size:18px; font-family:'Carrois Gothic', Arial, Verdana, Helvetica, sans-serif; background:rgba(255,255,255,0.2); }
+#primary-navigation li { display:inline-block; }
+#primary-navigation a { display:inline-block; padding:12px;
+	text-transform:0 2px 2px rgba(0,0,0,0.5); color:#fff; opacity:1; text-decoration:none;
+	-webkit-transition:all 0.1s ease-in; -moz-transition:all 0.1s ease-in; -o-transition:all 0.1s ease-in; transition:all 0.1s ease-in; 
+}
+#primary-navigation .current-menu-item a,
+#primary-navigation a:hover { opacity:0.7; }
+#primary-navigation .icon-reorder { color:#fff; font-size:22px; position:relative; top:4px; }
+
+
+/* footer-navigation */
+#footer-navigation { font-size:18px; font-family:'Carrois Gothic', Arial, Verdana, Helvetica, sans-serif; }
+#footer-navigation a { opacity:1; -webkit-transition:all 0.1s ease-in; -moz-transition:all 0.1s ease-in; -o-transition:all 0.1s ease-in; transition:all 0.1s ease-in; }
+#footer-navigation a:hover { opacity:0.7; }
+#footer-navigation li { display:inline; padding:0 6px 0 0; margin:0 4px 0 0; }
+
+
+/* Navigation */
+.navigation-post { display:block; clear:both; text-align:left; padding:3px 7px; }
+.prev-post { padding-left:7px; }
+.next-post { padding-right:7px; }
+
+.wp-pagenavi a,
+.wp-pagenavi span { padding:3px 4px; margin:3px; }
+
+#navigation-breadcrumb { font-weight:bold; padding-bottom:3px; display:block; clear:both; }
+.navigation-posts { font-weight:bold; padding-bottom:3px; display:block; clear:both; text-align:center; }
+.navigation-posts a { padding:0 3px; }
+
+
+
+
+
+
+/* Post, Page & General Loops
+#################################################################################################### */
+
+.hentry { position:relative; }
+#loop-default .hentry { padding:45px 0 15px 0; }
+#loop-default .hentry:first-child { padding:0 0 15px 0; }
+
+
+.has-post-thumbnail .post-wrap { padding-left:170px; }
+.has-post-thumbnail .wp-post-image { float:left; }
+
+
+
+/* Meta Data */
+.meta-data { padding-bottom:10px; font-size:18px; color:#a0a0a0; font-family:'Carrois Gothic', Arial, Verdana, Helvetica, sans-serif; }
+.post-meta-data {}
+
+.post-comments { padding:0 7px 0 0; }
+.post-date { padding:0 7px 0 0; }
+.read_more-dots { display:none; }
+
+
+
+/* Entry - Excerpt */
+#loop-default .entry { clear:both; padding-top:10px; }
+#loop-default .excerpt { clear:none; padding:0; }
+
+.entry a {}
+.entry a:hover {}
+
+a.read_more { display:block; }
+a.read_more:hover {}
+
+.entry .aligncenter { display:block; margin:0 auto 15px; }
+.entry .alignnone { clear:both; float:none; }
+.entry .alignleft { margin-right:15px; margin-bottom:15px; }
+.entry .alignright { margin-left:15px; margin-bottom:15px; }
+.entry img { max-width:100% !important; height:auto !important; margin-bottom:15px; }
+.entry .img-border { border:solid 2px #e2e2e2; }
+.entry img.wp-smiley { border:none; margin:0; padding:0; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; }
+
+.entry p { padding-bottom:20px; }
+.excerpt p { padding-bottom:10px; }
+
+.entry blockquote {}
+.entry blockquote p { padding:0; margin:10px 45px 20px 20px; }
+.entry ol, .entry ul { margin:5px 0 15px 20px; }
+.entry ul { list-style:disc; }
+.entry ol { list-style:decimal; }
+.entry li { padding-bottom:7px; }
+.entry strong {}
+.entry small { font-size:11px; }
+.entry table { line-height:18px; margin-bottom:20px; }
+.entry table th,
+.entry table td { padding:0 7px 7px 0; vertical-align:top; }
+
+.entry dl { margin-bottom:20px; }
+
+.entry .h1, .entry h1,
+.entry .h2, .entry h2, 
+.entry .h3, .entry h3, 
+.entry .h4, .entry h4, 
+.entry .h5, .entry h5, 
+.entry .h6, .entry h6 
+{}
+
+
+
+/* Gallery Shortcode */
+.gallery {}
+.gallery br { display:none; }
+.gallery dl.gallery-item { display:block; float:left; width:150px; padding:10px; margin:10px 0 0 10px; }
+
+.gallery dl dt.gallery-icon {}
+.gallery img {}
+.gallery-caption {}
+
+.wp-caption { max-width:96%; display:block; text-align:center !important; padding:5px; background:#eee; }
+.wp-caption p { font-size:11px; line-height:14px; padding:5px 0 7px; }
+.wp-caption img { display:inline; }
+
+.wp-caption-text {}
+.sticky {}
+.bypostauthor {}
+
+
+
+/* All sitemap style layouts - search, 404, sitemap */
+.layout-sitemap .display-list { margin:0 2% 20px 0; width:48%; float:left; }
+
+.layout-sitemap .display-list ul { margin:10px 0 0 0; }
+.layout-sitemap .display-list ul ul { margin:0 0 7px 15px; list-style:disc; }
+.layout-sitemap .display-list ul ul.children { padding:0; margin-left:15px; list-style:disc; }
+
+.layout-sitemap .site-search { display:block; padding-bottom:10px; }
+
+
+
+
+
+
+/* Widget Areas
+#################################################################################################### */
+
+
+/* Menu indiv */
+.sidebar { color:#a0a0a0; font-family:'Carrois Gothic', Arial, Verdana, Helvetica, sans-serif; font-size:24px; line-height:32px; }
+.sidebar .h3 { color:#21759b; }
+.sidebar ul {}
+.sidebar li { margin-bottom:40px; }
+.sidebar li li { margin:0; }
+.sidebar img { max-width:100%; height:auto; }
+.sidebar p { padding-bottom:20px; }
+
+
+.widget-title { padding-bottom:10px; }
+
+
+
+
+
+
+/* General Footer
+#################################################################################################### */
+
+
+/* Footer */
+#footer { color:#a0a0a0; text-shadow:0 2px 3px rgba( 0,0,0,0.75 ); padding:40px 0;
+	background-image: linear-gradient(bottom, rgb(38,38,38) 0%, rgb(70,70,70) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(38,38,38) 0%, rgb(70,70,70) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(38,38,38) 0%, rgb(70,70,70) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(38,38,38) 0%, rgb(70,70,70) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(38,38,38) 0%, rgb(70,70,70) 100%);
+    background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(38,38,38)), color-stop(1, rgb(70,70,70)) );
+}
+#footer .h3 { color:#e2e2e2; }
+#footer a { color:#e2e2e2; }
+#footer ul {}
+#footer ul li {}
+
+#footer .row-one { margin-bottom:30px; }
+#footer .row-two { text-align:center; }
+
+#footer #footer-navigation,
+#footer .social-networks { margin-bottom:6px; }
+
+
+
+
+
+
+/* Comments
+#################################################################################################### */
+
+#comments { margin-top:45px; }
+#comments .comments-title { margin:0 0 7px; }
+
+
+#comments .navigation { display:block; clear:both; text-align:left; padding:3px 7px; }
+#comments .prev-page { padding-left:7px; }
+#comments .next-page { padding-right:7px; }
+
+
+#respond {}
+#respond #reply-title { margin:0 0 7px; }
+#respond #respond-login {}
+
+#respond form {}
+
+#respond form .comments-cancel_reply {}
+#respond form .comments-logged_in {}
+
+#respond form .form-block { padding-bottom:7px; }
+#respond label { display:inline-block; width:20%; }
+#respond .required { width:0%; display:none; }
+#respond form intput[type="text"] { display:inline-block; margin:7px 0; width:40% !important; }
+#respond form textarea {}
+
+#respond form .comment-notes,
+#respond form .comment-form-author,
+#respond form .comment-form-email,
+#respond form .comment-form-url,
+#respond form .comment-form-comment { padding-bottom:7px; }
+
+#respond form .comment-form-url label { display:inline-block; width:21%; }
+
+#respond form .button-submit { margin-top:7px; }
+#respond form .button-submit #button-submit_comments {}
+
+.commentlist { list-style:none; margin:0 0 1em; padding:0; text-indent:0; }
+.commentlist li { padding-bottom:22px; margin-bottom:10px; }
+.commentlist li .vcard {  font-style:normal; padding:0 0 3px; font-weight:200; font-size:16px; letter-spacing:1px; }
+.commentlist li .avatar { float:right; margin:0 0 1em 1em; }
+.commentlist li .comment-meta { padding-bottom:2px; }
+.commentlist li .comment-meta a { color:; font-size:12px; }
+.commentlist li ul { list-style:square; margin:0 0 1em 2em; }
+.commentlist li .reply { text-align:right; }
+.commentlist li .reply a { text-decoration:underline; font-style:italic; padding-left:10px; }
+.commentlist li ul.children { list-style:none; margin:10px 0 0 0; text-indent:0; }
+.commentlist li ul.children li { padding-bottom:0; }
+
+
+
+
+
+
+/* Home
+#################################################################################################### */
+
+body.page-template-tpl-home-php #primary-content {}
+body.page-template-tpl-home-php #primary-content .entry { font-size:24px; line-height:30px; color:#a0a0a0; font-family:'Carrois Gothic', Arial, Verdana, Helvetica, sans-serif; }
+body.page-template-tpl-home-php #primary-content .entry ul { color:#464646; font-size:18px; line-height:20px; }
+
+
+
+
+
+
+
+
+
