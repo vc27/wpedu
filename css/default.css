@@ -22,7 +22,7 @@ a, a:visited { color:#d54e21; text-decoration:none; opacity:1;
 }
 a:hover { opacity:0.7; }
 
-.h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, h5, .h6, h6 { color:#464646; 
+.h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, h5, .h6, h6 { color:#464646; margin-bottom:10px;
 	font-family:'Carrois Gothic', Arial, Verdana, Helvetica, sans-serif; font-weight:400; display:block; line-height:1.1em; 
 }
 .h1, h1 { font-size:64px; text-shadow:0 1px 2px rgba( 70,70,70,0.50 ); }
@@ -172,7 +172,7 @@ Usage - class="img img-name-here" -- allows controlled image sizes for retina di
 /*Header*/
 #header .inner-wrap { padding:40px 0; text-align:center; color:#fff; text-shadow:0 1px 2px rgba( 70,70,70,0.50 ); }
 #header .inner-wrap a { color:#fff; }
-#header .h1, #header .h4 { color:#fff; }
+#header .h1, #header .h4 { color:#fff; margin-bottom:0; }
 
 
 
@@ -339,9 +339,6 @@ a.read_more:hover {}
 .sidebar p { padding-bottom:20px; }
 
 
-.widget-title { padding-bottom:10px; }
-
-
 
 
 
@@ -351,7 +348,7 @@ a.read_more:hover {}
 
 
 /* Footer */
-#footer { color:#a0a0a0; text-shadow:0 2px 3px rgba( 0,0,0,0.75 ); padding:40px 0;
+#footer { color:#a0a0a0; text-shadow:0 2px 3px rgba( 0,0,0,0.75 ); padding:40px 0; margin-top:40px;
 	background-image: linear-gradient(bottom, rgb(38,38,38) 0%, rgb(70,70,70) 100%);
 	background-image: -o-linear-gradient(bottom, rgb(38,38,38) 0%, rgb(70,70,70) 100%);
 	background-image: -moz-linear-gradient(bottom, rgb(38,38,38) 0%, rgb(70,70,70) 100%);
@@ -433,9 +430,32 @@ a.read_more:hover {}
 /* Home
 #################################################################################################### */
 
-body.page-template-tpl-home-php #primary-content {}
+/*primary-content*/
+body.page-template-tpl-home-php #primary-content .row-fluid { margin-bottom:15px; }
 body.page-template-tpl-home-php #primary-content .entry { font-size:24px; line-height:30px; color:#a0a0a0; font-family:'Carrois Gothic', Arial, Verdana, Helvetica, sans-serif; }
 body.page-template-tpl-home-php #primary-content .entry ul { color:#464646; font-size:18px; line-height:20px; }
+
+
+
+/*available-classes*/
+body.page-template-tpl-home-php #available-classes .inner-wrap { padding:40px 20px; background:#f8f8f8; }
+body.page-template-tpl-home-php #available-classes .h3 a { color:#21759b; display:block; }
+body.page-template-tpl-home-php #available-classes .h5 { color:#a0a0a0; }
+body.page-template-tpl-home-php #available-classes .entry { padding-bottom:20px; }
+body.page-template-tpl-home-php #available-classes .entry p { line-height:22px; }
+
+
+
+
+
+
+/* Class
+#################################################################################################### */
+
+body.single-class #sessions {}
+body.single-class #sessions .hentry { margin-top:60px; }
+body.single-class #sessions .hentry .h3 { text-decoration:underline; margin-bottom:30px; }
+body.single-class #sessions .hentry li { padding-bottom:0; }
 
 
 

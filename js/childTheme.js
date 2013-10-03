@@ -51,7 +51,7 @@ var childTheme = {
 	 **/
 	appendMenu : function() {
 		
-		jQuery('#primary-navigation li:first-child').prepend('<span class="icon-reorder"></span> ');
+		jQuery('#menu-primary-menu').prepend('<li class=\"menu\"><span class="icon-reorder"></span></li>');
 		
 	}, // end appendMenu : function 
 	

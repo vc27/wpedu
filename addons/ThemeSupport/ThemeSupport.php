@@ -49,7 +49,7 @@ class ThemeSupport {
 		
 		// add_action( 'after_setup_theme', array( &$this, 'after_setup_theme' ) );
 		
-		// add_action( 'init', array( &$this, 'init' ) );
+		add_action( 'init', array( &$this, 'init' ) );
 		
 		// add_action( 'admin_init', array( &$this, 'admin_init' ) );
 		
@@ -104,7 +104,10 @@ class ThemeSupport {
 	function init() {
 		
 		// filter the_post
-		// add_action( 'the_post', array( &$this, 'the_post' ) );
+		
+		if ( ! is_admin() ) {
+			add_action( 'the_post', array( &$this, 'the_post' ) );
+		}
 		
 	} // end function init
 	
@@ -319,9 +322,66 @@ class ThemeSupport {
 	 **/
 	function the_post( $post ) {
 		
-		if ( $post->post_type == 'post' ) {
+		if ( $post->post_type == 'class' ) {
 			
-			// 
+			$post->_class__status = get_post_meta( $post->ID, '_class__status', true );
+			$post->_class__cform = get_post_meta( $post->ID, '_class__cform', true );
+			$post->_class__price = get_post_meta( $post->ID, '_class__price', true );
+			$post->_class__prurchase_url = get_post_meta( $post->ID, '_class__prurchase_url', true );
+			$post->_class__tagline = get_post_meta( $post->ID, '_class__tagline', true );
+			$post->_class__short_desc = get_post_meta( $post->ID, '_class__short_desc', true );
+			$post->_class__session_1 = get_post_meta( $post->ID, '_class__session_1', true );
+			$post->_class__session_2 = get_post_meta( $post->ID, '_class__session_2', true );
+			$post->_class__session_3 = get_post_meta( $post->ID, '_class__session_3', true );
+			$post->_class__session_4 = get_post_meta( $post->ID, '_class__session_4', true );
+			$post->sessions = array();
+			
+			
+			// Session 1
+			if ( ! empty( $post->_class__session_1 ) ) {
+				$post->have_session_1 = true;
+				$post->sessions[0] = get_post( $post->_class__session_1 );
+				$post->sessions[0]->_class__session_1_date = get_post_meta( $post->ID, '_class__session_1_date', true );
+				$post->sessions[0]->_class__session_1_time = get_post_meta( $post->ID, '_class__session_1_time', true );
+			} else {
+				$post->have_session_1 = false;
+			}
+			
+			
+			
+			// Session 2
+			if ( ! empty( $post->_class__session_2 ) ) {
+				$post->have_session_2 = true;
+				$post->sessions[1] = get_post( $post->_class__session_2 );
+				$post->sessions[1]->_class__session_2_date = get_post_meta( $post->ID, '_class__session_2_date', true );
+				$post->sessions[1]->_class__session_2_time = get_post_meta( $post->ID, '_class__session_2_time', true );
+			} else {
+				$post->have_session_2 = false;
+			}
+			
+			
+			
+			// Session 3
+			if ( ! empty( $post->_class__session_3 ) ) {
+				$post->have_session_3 = true;
+				$post->sessions[2] = get_post( $post->_class__session_3 );
+				$post->sessions[2]->_class__session_3_date = get_post_meta( $post->ID, '_class__session_3_date', true );
+				$post->sessions[2]->_class__session_3_time = get_post_meta( $post->ID, '_class__session_3_time', true );
+			} else {
+				$post->have_session_3 = false;
+			}
+			
+			
+			
+			// Session 4
+			if ( ! empty( $post->_class__session_4 ) ) {
+				$post->have_session_4 = true;
+				$post->sessions[3] = get_post( $post->_class__session_4 );
+				$post->sessions[3]->_class__session_4_date = get_post_meta( $post->ID, '_class__session_4_date', true );
+				$post->sessions[3]->_class__session_4_time = get_post_meta( $post->ID, '_class__session_4_time', true );
+			} else {
+				$post->have_session_4 = false;
+			}
 			
 		}
 		

@@ -16,6 +16,14 @@ do_action( 'inner_wrap_bottom' );
 		</div><!-- End content-wrap-inner -->
 	</div><!-- End content-wrap -->
 	
+	<?php
+	
+	if ( is_page_template('tpl-home.php') ) {
+		get_template_part( 'home-page/available-classes' );
+	}	
+	
+	?>
+	
 	<!-- Start Footer -->
 	<div id="footer" class="outer-wrap">
 		<footer class="inner-wrap">

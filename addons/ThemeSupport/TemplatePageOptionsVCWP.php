@@ -120,7 +120,7 @@ class TemplatePageOptionsVCWP {
 			// Metaboxs and Optionns
 			'options' => array(
                 
-				// Default Metabox and Options
+				/* Default Metabox and Options
 				'general' => array(
 
 					// Metabox
@@ -142,13 +142,75 @@ class TemplatePageOptionsVCWP {
 							'validation' => 'text',
 							'title' => 'Test Link',
 							'desc' => 'This is a test link as an example.',
-							),
 						),
-					), // end Default Metabox and Options
+					),
+				), // end Default Metabox and Options
+				*/
+				
+				
+				
+				// Default Metabox and Options
+				'home' => array(
 
-				),
+					// Metabox
+					'meta_box' => array(
+						'title' => 'Home Page Setting',
+						'context' => 'normal',
+						'priority' => 'core',
+						// 'desc' => 'Overall settings for various template pages.',
+						// 'callback' => array( &$this, 'custom_meta_box_option' ),
+						'save_all_settings' => 'Save', // uses value as button text & sanitize_title_with_dashes(save_all_settings) for value
+						),
 
-			) ); // end default_settings array
+					// settings and options
+					'settings' => array(
+
+						// Single setting and option
+						'classes_title' => array(
+							'type' => 'title',
+							'validation' => false,
+							'title' => '<strong>Classes</strong>',
+							// 'desc' => 'This is a test link as an example.',
+						),
+						'class_title' => array(
+							'type' => 'text',
+							'validation' => 'text',
+							'title' => 'Title',
+						),
+						'class_content' => array(
+							'type' => 'text_editor',
+							'validation' => 'text_editor',
+							'title' => 'Description',
+						),
+						'class_1' => array(
+							'type' => 'select_post',
+							'validation' => 'select',
+							'title' => 'Class One',
+							'options' => array(
+								'post_type' => 'class'
+							)
+						),
+						'class_2' => array(
+							'type' => 'select_post',
+							'validation' => 'select',
+							'title' => 'Class Two',
+							'options' => array(
+								'post_type' => 'class'
+							)
+						),
+						'class_3' => array(
+							'type' => 'select_post',
+							'validation' => 'select',
+							'title' => 'Class Three',
+							'options' => array(
+								'post_type' => 'class'
+							)
+						),
+					),
+				), // end Default Metabox and Options
+				
+
+			) ) ); // end default_settings array
 	} // end function add_options_page
 	
 	

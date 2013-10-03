@@ -307,9 +307,9 @@ class ClassPostType {
 						'title' => __( 'Status', 'childtheme' ),
 						'name' => '_class__status',
 						'options' => array(
-							'Pre Enroll' => 'pre-enroll',
-							'Open Enrollment' => 'open-enroll',
-							'In Session' => 'in-session',
+							'Pre Enroll' => 'Pre Enroll',
+							'Open Enrollment' => 'Open Enrollment',
+							'In Session' => 'In Session',
 						)
 					),
 					array(
@@ -331,17 +331,24 @@ class ClassPostType {
 						'name' => '_class__prurchase_url',
 					),
 					array(
+						'type' => 'text',
+						'validation' => 'text',
+						'title' => __( 'Tagline', 'childtheme' ),
+						'name' => '_class__tagline',
+					),
+					array(
 						'type' => 'simple_text_editor',
 						'validation' => 'text_editor',
 						'title' => __( 'Short Desc', 'childtheme' ),
 						'name' => '_class__short_desc',
 					),
 					
+					
 					// Session 1
 					array(
 						'type' => 'title',
 						'validation' => false,
-						'title' => __( 'Session 1', 'childtheme' ),
+						'title' => '<strong>' . __( 'Session 1', 'childtheme' ) . "</strong>",
 						'name' => '_class__session_1_title',
 					),
 					array(
@@ -371,7 +378,7 @@ class ClassPostType {
 					array(
 						'type' => 'title',
 						'validation' => false,
-						'title' => __( 'Session 2', 'childtheme' ),
+						'title' => '<strong>' . __( 'Session 2', 'childtheme' ) . "</strong>",
 						'name' => '_class__session_2_title',
 					),
 					array(
@@ -401,7 +408,7 @@ class ClassPostType {
 					array(
 						'type' => 'title',
 						'validation' => false,
-						'title' => __( 'Session 3', 'childtheme' ),
+						'title' => '<strong>' . __( 'Session 3', 'childtheme' ) . "</strong>",
 						'name' => '_class__session_3_title',
 					),
 					array(
@@ -431,7 +438,7 @@ class ClassPostType {
 					array(
 						'type' => 'title',
 						'validation' => false,
-						'title' => __( 'Session 4', 'childtheme' ),
+						'title' => '<strong>' . __( 'Session 4', 'childtheme' ) . "</strong>",
 						'name' => '_class__session_4_title',
 					),
 					array(
