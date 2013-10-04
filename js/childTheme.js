@@ -39,8 +39,30 @@ var childTheme = {
 		childTheme.checkIEVersion();
 		
 		this.appendMenu();
+		this.scrollTo();
 		
 	}, // end init : function
+	
+	
+	
+	/**
+	 * scrollTo
+	 * @version 1.0
+	 * @updated 00.00.13
+	 **/
+	scrollTo : function() {
+		
+		jQuery('.scrollto').click(function(event) {
+            event.preventDefault();			
+			var click = jQuery(this);
+			
+			jQuery('html,body').animate({ 
+				scrollTop : ( jQuery(click.attr('data-hash')).offset().top - 30 )
+				}, 500 );
+
+		});
+		
+	}, // end scrollTo : function
 	
 	
 	

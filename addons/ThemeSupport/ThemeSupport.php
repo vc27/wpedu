@@ -341,8 +341,8 @@ class ThemeSupport {
 			if ( ! empty( $post->_class__session_1 ) ) {
 				$post->have_session_1 = true;
 				$post->sessions[0] = get_post( $post->_class__session_1 );
-				$post->sessions[0]->_class__session_1_date = get_post_meta( $post->ID, '_class__session_1_date', true );
-				$post->sessions[0]->_class__session_1_time = get_post_meta( $post->ID, '_class__session_1_time', true );
+				$post->sessions[0]->date = get_post_meta( $post->ID, '_class__session_1_date', true );
+				$post->sessions[0]->time = get_post_meta( $post->ID, '_class__session_1_time', true );
 			} else {
 				$post->have_session_1 = false;
 			}
@@ -353,8 +353,8 @@ class ThemeSupport {
 			if ( ! empty( $post->_class__session_2 ) ) {
 				$post->have_session_2 = true;
 				$post->sessions[1] = get_post( $post->_class__session_2 );
-				$post->sessions[1]->_class__session_2_date = get_post_meta( $post->ID, '_class__session_2_date', true );
-				$post->sessions[1]->_class__session_2_time = get_post_meta( $post->ID, '_class__session_2_time', true );
+				$post->sessions[1]->date = get_post_meta( $post->ID, '_class__session_2_date', true );
+				$post->sessions[1]->time = get_post_meta( $post->ID, '_class__session_2_time', true );
 			} else {
 				$post->have_session_2 = false;
 			}
@@ -365,8 +365,8 @@ class ThemeSupport {
 			if ( ! empty( $post->_class__session_3 ) ) {
 				$post->have_session_3 = true;
 				$post->sessions[2] = get_post( $post->_class__session_3 );
-				$post->sessions[2]->_class__session_3_date = get_post_meta( $post->ID, '_class__session_3_date', true );
-				$post->sessions[2]->_class__session_3_time = get_post_meta( $post->ID, '_class__session_3_time', true );
+				$post->sessions[2]->date = get_post_meta( $post->ID, '_class__session_3_date', true );
+				$post->sessions[2]->time = get_post_meta( $post->ID, '_class__session_3_time', true );
 			} else {
 				$post->have_session_3 = false;
 			}
@@ -377,8 +377,8 @@ class ThemeSupport {
 			if ( ! empty( $post->_class__session_4 ) ) {
 				$post->have_session_4 = true;
 				$post->sessions[3] = get_post( $post->_class__session_4 );
-				$post->sessions[3]->_class__session_4_date = get_post_meta( $post->ID, '_class__session_4_date', true );
-				$post->sessions[3]->_class__session_4_time = get_post_meta( $post->ID, '_class__session_4_time', true );
+				$post->sessions[3]->date = get_post_meta( $post->ID, '_class__session_4_date', true );
+				$post->sessions[3]->time = get_post_meta( $post->ID, '_class__session_4_time', true );
 			} else {
 				$post->have_session_4 = false;
 			}
