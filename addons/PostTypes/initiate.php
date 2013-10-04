@@ -15,6 +15,7 @@ if ( ! defined('PostTypeVC_INIT') ) {
 	// Classes
 	require_once( "ClassPostType.php" );
 	require_once( "SessionPostType.php" );
+	require_once( "FAQPostType.php" );
 	// require_once( "PostTypesHelper.php" );
 	define( 'PostTypeVC_INIT', true );
 	

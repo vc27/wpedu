@@ -40,8 +40,101 @@ var childTheme = {
 		
 		this.appendMenu();
 		this.scrollTo();
+		this.mailChimp();
+		this.faq();
+		this.classes();
+		this.singleClass();
 		
-	}, // end init : function
+	}, // end init : function 
+	
+	
+	
+	/**
+	 * singleClass
+	 * @version 1.0
+	 * @updated 00.00.13
+	 **/
+	purchaseCloned : 0,
+	singleClass : function() {
+		
+		if ( jQuery('body').hasClass('single-class') ) {
+			var classText = jQuery('h1').text();
+			var btn = jQuery('#btn-purchase');
+			var btnClone = jQuery('#btn-purchase').clone();
+			jQuery(btnClone).prepend( '<span class="icon-wordpress"></span> ' + classText + ': &nbsp; ' );
+			jQuery('body').append('<div id="btn-float-wrapper" style="display:none;"></div>');
+			btn.waypoint(function() {
+				
+				if ( childTheme.getPurchaseCloned() == 1 ) {
+					jQuery('#btn-float-wrapper').fadeOut(200, function() {
+						childTheme.clearPurchaseCloned();
+					});
+				} else {
+					jQuery('#btn-float-wrapper').html(btnClone).fadeIn(200, function() {
+						childTheme.setPurchaseCloned()
+					});
+				}
+
+			}, { offset: '0%' });
+		
+		} // end if ( jQuery('body').hasClass('single-class') )
+		
+	}, // end singleClass : function
+	setPurchaseCloned : function() {
+		childTheme.purchaseCloned = 1;
+	},
+	clearPurchaseCloned : function() {
+		childTheme.purchaseCloned = 0;
+	},
+	getPurchaseCloned : function() {
+		return childTheme.purchaseCloned;
+	},
+	
+	
+	
+	/**
+	 * classes
+	 * @version 1.0
+	 * @updated 00.00.13
+	 **/
+	classes : function() {
+		
+		if ( jQuery('body').hasClass('post-type-archive-class') ) {
+			jQuery('body.post-type-archive-class #content-wrap h1').prepend('<span class="icon-wordpress"></span>&nbsp;');
+		}
+		
+	}, // end classes : function
+	
+	
+	
+	/**
+	 * faq
+	 * @version 1.0
+	 * @updated 00.00.13
+	 **/
+	faq : function() {
+		
+		if ( jQuery('body').hasClass('post-type-archive-faq') ) {
+			jQuery('body.post-type-archive-faq #content-wrap h1').prepend('<span class="icon-lifebuoy"></span>&nbsp;');
+			jQuery('body.post-type-archive-faq #loop-archive-faq .h5').click(function() {
+				jQuery(this).next().slideToggle(200);
+			});
+		}
+		
+	}, // end faq : function
+	
+	
+	
+	/**
+	 * mailChimp
+	 * @version 1.0
+	 * @updated 00.00.13
+	 **/
+	mailChimp : function() {
+		
+		jQuery('.widget_mailchimpsf_widget .widget-title-wrap').prepend('<span class="icon-envelope"></span>&nbsp;');
+		
+	}, // end mailChimp : function
 	
 	
 	

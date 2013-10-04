@@ -107,6 +107,7 @@ class ThemeSupport {
 		
 		if ( ! is_admin() ) {
 			add_action( 'the_post', array( &$this, 'the_post' ) );
+			add_filter( 'pre_get_posts', array( &$this, 'pre_get_posts' ) );
 		}
 		
 	} // end function init
@@ -315,6 +316,31 @@ class ThemeSupport {
 	
 	
 	/**
+	 * pre_get_posts
+	 *
+	 * @version 1.0
+	 * @updated 00.00.13
+	 **/
+	function pre_get_posts( $wp_query ) {
+		
+		if ( $wp_query->query['post_type'] == 'faq' ) {
+			
+			$wp_query->set( 'orderby', 'menu_order' );
+		
+		} else if ( $wp_query->is_main_query() AND $wp_query->query['post_type'] == 'class' AND $wp_query->is_archive ) {
+			
+			$wp_query->set( 'orderby', 'menu_order' );
+			
+		} // end if ( $wp_query->is_main_query() )
+		
+	} // end function pre_get_posts
+	
+	
+	
+	
+	
+	
+	/**
 	 * the_post
 	 *
 	 * @version 1.0
@@ -322,11 +348,13 @@ class ThemeSupport {
 	 **/
 	function the_post( $post ) {
 		
-		if ( $post->post_type == 'class' ) {
+		if ( ! is_admin() AND $post->post_type == 'class' ) {
 			
 			$post->_class__status = get_post_meta( $post->ID, '_class__status', true );
 			$post->_class__cform = get_post_meta( $post->ID, '_class__cform', true );
 			$post->_class__price = get_post_meta( $post->ID, '_class__price', true );
+			$post->_class__seats = get_post_meta( $post->ID, '_class__seats', true );
+			$post->_class__day = get_post_meta( $post->ID, '_class__day', true );
 			$post->_class__prurchase_url = get_post_meta( $post->ID, '_class__prurchase_url', true );
 			$post->_class__tagline = get_post_meta( $post->ID, '_class__tagline', true );
 			$post->_class__short_desc = get_post_meta( $post->ID, '_class__short_desc', true );
@@ -383,7 +411,21 @@ class ThemeSupport {
 				$post->have_session_4 = false;
 			}
 			
-		}
+			switch ( $post->_class__status ) {
+				case 'Pre Enroll' :
+					$post->btn_class = 'btn btn-blue';
+					break;
+				case 'Open Enrollment' :
+					$post->purchase_text = 'Pay&nbsp;for&nbsp;Enrollment';
+					$post->btn_class = 'btn btn-orange';
+					break;
+				case 'In Session' :
+					$post->btn_class = 'btn btn-gray';
+					break;
+			} // end switch ( $post->_class_status )
+			
+			
+		} // end if ( $post->post_type == 'class' )
 		
 	} // end function the_post 
 	

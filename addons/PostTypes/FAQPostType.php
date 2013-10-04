@@ -1,6 +1,6 @@
 <?php
 /**
- * File Name ClassPostType.php
+ * File Name FAQPostType.php
  * @package WordPress
  * @subpackage ParentTheme_VC
  * @license GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -14,13 +14,13 @@
 
 
 /**
- * ClassPostType
+ * FAQPostType
  *
  * @version 1.0
  * @updated 00.00.13
  **/
-$ClassPostType = new ClassPostType();
-class ClassPostType {
+$FAQPostType = new FAQPostType();
+class FAQPostType {
 	
 	
 	
@@ -46,7 +46,6 @@ class ClassPostType {
 	function __construct() {
 		
 		$this->register_post_type();
-		$this->register_postmeta();
 		
 		// hook method after_setup_theme
 		// add_action( 'after_setup_theme', array( &$this, 'after_setup_theme' ) );
@@ -141,6 +140,14 @@ class ClassPostType {
 		// add_filter( 'manage_edit-' . $this->registered->_post_type . '_sortable_columns', array( &$this, 'column_register_sortable' ) );
 		// add_filter( 'request', array( &$this, 'column_orderby' ) );
 		
+		// Added for taxonomy filtering
+		/*
+		if ( $this->registered->have_tax_filters ) {
+			add_action( 'restrict_manage_posts', array( &$this, 'restrict_manage_html_filters' ) );
+			add_filter( 'pre_get_posts', array( &$this, 'post_type_parse_query' ) );
+		}
+		*/
+		
 	} // end function admin_init
 	
 	
@@ -209,21 +216,21 @@ class ClassPostType {
 	 **/
 	function register_post_type() {
 		
-		$this->registered_post_type = register__post_type( array(
+		$this->registered = register__post_type( array(
 			'post_type' => array(
 				'labels' => array(
-					'name' => __( 'Class', 'childtheme' ),
-					'singular_name' => __( 'Class', 'childtheme' ),
+					'name' => __( 'FAQ', 'childtheme' ),
+					'singular_name' => __( 'FAQ', 'childtheme' ),
 					'add_new' => __( 'Add New', 'childtheme' ),
 					'add_new_item' => __( 'Add New', 'childtheme' ),
-					'edit_item' => __( 'Edit Class', 'childtheme' ),
-					'new_item' => __( 'New Class', 'childtheme' ),
-					'view_item' => __( 'View Class', 'childtheme' ),
-					'search_items' => __( 'Search Class', 'childtheme' ),
-					'not_found' => __( 'No Class found', 'childtheme' ),
-					'not_found_in_trash' => __( 'No Class found in Trash', 'childtheme' ), 
+					'edit_item' => __( 'Edit FAQ', 'childtheme' ),
+					'new_item' => __( 'New FAQ', 'childtheme' ),
+					'view_item' => __( 'View FAQ', 'childtheme' ),
+					'search_items' => __( 'Search FAQ', 'childtheme' ),
+					'not_found' => __( 'No FAQ found', 'childtheme' ),
+					'not_found_in_trash' => __( 'No FAQ found in Trash', 'childtheme' ), 
 					'parent_item_colon' => '',
-					'menu_name' => __( 'Classes', 'childtheme' )
+					'menu_name' => __( 'FAQ', 'childtheme' )
 				),
 
 				// 'description' => '',
@@ -233,7 +240,7 @@ class ClassPostType {
 				'show_ui' => true,
 				'show_in_menu' => 'edit.php?post_type=page',
 				// 'menu_position' => null,
-				// 'menu_icon' => get_stylesheet_directory_uri() . "/addons/PostTypes/images/class-16x16.png", // is set in class construct
+				// 'menu_icon' => get_stylesheet_directory_uri() . "/addons/PostTypes/images/faq-16x16.png", // is set in class construct
 				'capability_type' => 'post', // requires 'page' to call in post_parent
 				// 'capabilities' => array(), --> See codex for detailed description
 				// 'map_meta_cap' => false,
@@ -243,29 +250,29 @@ class ClassPostType {
 					'title',
 					'editor',
 					// 'author',
-					'thumbnail',
+					// 'thumbnail',
 					// 'excerpt',
 					// 'trackbacks',
 					// 'custom-fields',
-					// 'comments',
+					'comments',
 					// 'revisions',
 					'page-attributes', //  (menu order, hierarchical must be true to show Parent option)
 					// 'post-formats',
 				),
 
 				// 'register_meta_box_cb' => '', --> managed via class method add_meta_boxes()
-				// 'taxonomies' => array('post_tag', 'class-tax-hierarchal'), // array of registered taxonomies
+				// 'taxonomies' => array('post_tag', 'faq-tax-hierarchal'), // array of registered taxonomies
 				// 'permalink_epmask' => 'EP_PERMALINK',
 				'has_archive' => true, // Enables post type archives. Will use string as archive slug.
 
 				'rewrite' => array( // Permalinks
-					'slug' => 'class',
+					'slug' => 'faq',
 					// 'with_front' => '', // set this to false to over-write a wp-admin-permalink structure
 					// 'feeds' => '', // default to has_archive value
 					// 'pages' => true,
 				),
 
-				'query_var' => 'class', // This goes to the WP_Query schema
+				'query_var' => 'faq', // This goes to the WP_Query schema
 				'can_export' => true,
 				// 'show_in_nav_menus' => '', // value of public argument
 				'_builtin' => false, 
@@ -276,224 +283,6 @@ class ClassPostType {
 		) );
 		
 	} // end function register_post_type
-	
-	
-	
-	
-	
-	
-	/**
-	 * register__postmeta
-	 *
-	 * @version 1.0
-	 * @updated 00.00.13
-	 **/
-	function register_postmeta() {
-		
-		if ( is_admin() ) {
-			
-			$options = array(
-				'id' => 'classes_metabox_id', // required
-				'title' => __( 'Class Attributes', 'childtheme' ), 
-				'context' => 'normal', // options: normal, side
-				'priority' => 'high', // ('high', 'core', 'default' or 'low')
-				// 'desc' => 'Metabox description can go here.',
-				// 'callback' => array( &$this, 'custom_meta_box_option' ),
-				'post_meta' => array( // array of post_meta fields
-					
-					array(
-						'type' => 'select',
-						'validation' => 'select',
-						'title' => __( 'Status', 'childtheme' ),
-						'name' => '_class__status',
-						'options' => array(
-							'Pre Enroll' => 'Pre Enroll',
-							'Open Enrollment' => 'Open Enrollment',
-							'In Session' => 'In Session',
-						)
-					),
-					array(
-						'type' => 'select_cform',
-						'validation' => 'select',
-						'title' => __( 'Contact Form', 'childtheme' ),
-						'name' => '_class__cform',
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Price', 'childtheme' ),
-						'name' => '_class__price',
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'number',
-						'title' => __( 'Available Seats', 'childtheme' ),
-						'name' => '_class__seats',
-					),
-					array(
-						'type' => 'select',
-						'validation' => 'select',
-						'title' => __( 'Day of the week', 'childtheme' ),
-						'name' => '_class__day',
-						'options' => array(
-							'Choose a day' => '',
-							'Sunday' => 'Sunday',
-							'Monday' => 'Monday',
-							'Tuesday' => 'Tuesday',
-							'Wednesday' => 'Wednesday',
-							'Thursday' => 'Thursday',
-							'Friday' => 'Friday',
-							'Saturday' => 'Saturday',
-						),
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Purchase URL', 'childtheme' ),
-						'name' => '_class__prurchase_url',
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Tagline', 'childtheme' ),
-						'name' => '_class__tagline',
-					),
-					array(
-						'type' => 'simple_text_editor',
-						'validation' => 'text_editor',
-						'title' => __( 'Short Desc', 'childtheme' ),
-						'name' => '_class__short_desc',
-					),
-					
-					
-					// Session 1
-					array(
-						'type' => 'title',
-						'validation' => false,
-						'title' => '<strong>' . __( 'Session 1', 'childtheme' ) . "</strong>",
-						'name' => '_class__session_1_title',
-					),
-					array(
-						'type' => 'select_post',
-						'validation' => 'select',
-						'title' => __( 'Session 1', 'childtheme' ),
-						'name' => '_class__session_1',
-						'options' => array(
-							'post_type' => 'session',
-						)
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Date', 'childtheme' ),
-						'name' => '_class__session_1_date',
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Time', 'childtheme' ),
-						'name' => '_class__session_1_time',
-					),
-					
-					
-					// Session 2
-					array(
-						'type' => 'title',
-						'validation' => false,
-						'title' => '<strong>' . __( 'Session 2', 'childtheme' ) . "</strong>",
-						'name' => '_class__session_2_title',
-					),
-					array(
-						'type' => 'select_post',
-						'validation' => 'select',
-						'title' => __( 'Session 2', 'childtheme' ),
-						'name' => '_class__session_2',
-						'options' => array(
-							'post_type' => 'session',
-						)
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Date', 'childtheme' ),
-						'name' => '_class__session_2_date',
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Time', 'childtheme' ),
-						'name' => '_class__session_2_time',
-					),
-					
-					
-					// Session 33
-					array(
-						'type' => 'title',
-						'validation' => false,
-						'title' => '<strong>' . __( 'Session 3', 'childtheme' ) . "</strong>",
-						'name' => '_class__session_3_title',
-					),
-					array(
-						'type' => 'select_post',
-						'validation' => 'select',
-						'title' => __( 'Session 3', 'childtheme' ),
-						'name' => '_class__session_3',
-						'options' => array(
-							'post_type' => 'session',
-						)
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Date', 'childtheme' ),
-						'name' => '_class__session_3_date',
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Time', 'childtheme' ),
-						'name' => '_class__session_3_time',
-					),
-					
-					
-					// Session 4
-					array(
-						'type' => 'title',
-						'validation' => false,
-						'title' => '<strong>' . __( 'Session 4', 'childtheme' ) . "</strong>",
-						'name' => '_class__session_4_title',
-					),
-					array(
-						'type' => 'select_post',
-						'validation' => 'select',
-						'title' => __( 'Session 4', 'childtheme' ),
-						'name' => '_class__session_4',
-						'options' => array(
-							'post_type' => 'session',
-						)
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Date', 'childtheme' ),
-						'name' => '_class__session_4_date',
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Time', 'childtheme' ),
-						'name' => '_class__session_4_time',
-					),
-					
-					
-				),
-			);
-			
-			$this->registered_postmeta = register__postmeta( array( $this->registered_post_type->_post_type ), $options );
-			
-		} // end if ( is_admin() )
-		
-	} // end function register__postmeta
 	
 	
 	
@@ -577,7 +366,7 @@ class ClassPostType {
 	 **/
 	function edit_columns( $columns ) {
 		
-		$columns['image'] = __( 'Image', 'childtheme' );
+		$columns['order'] = __( 'Order', 'childtheme' );
 		
 		return $columns;
 	
@@ -601,9 +390,8 @@ class ClassPostType {
 			
 			switch ( $column ) {
 
-				case "image":
-					if ( has_post_thumbnail( $post->ID ) )
-						echo get_the_post_thumbnail( $post->ID, array( 50, 50 ) );
+				case "order":
+					echo $post->menu_order;
 					break;
 					
 			} // end switch
@@ -614,4 +402,101 @@ class ClassPostType {
 	
 	
 	
-} // end class ClassPostType
+	
+	
+	
+	/**
+	 * Add html for dropdown select containing taxonomies
+	 * 
+	 * @version 1.2
+	 * @updated 00.00.13
+	 *
+	 * Notes:
+	 * There are no parameters, but there are two globals available
+	 * Available:
+	 * $post_type_object->taxonomies
+	 * $post_type_object->query_var
+	 **/
+	function restrict_manage_html_filters() {
+		global $post_type_object, $cat;
+		
+		if ( $post_type_object->query_var == $this->registered->_post_type AND $this->registered->have_tax_filters ) {
+			
+			foreach ( $this->registered->post_type_tax_filters as $taxonomy ) {
+				
+				echo $this->html_taxonomy_select( $taxonomy );
+				
+			} // end foreach ( $this->post_type_tax_filters )
+			
+		} // end if ( post_type )
+		
+	} // end restrict_manage_html_filters
+	
+	
+	
+	
+	
+	
+	/**
+	 * Build html for dropdown select containing taxonomies
+	 * 
+	 * @version 1.2
+	 * @updated 00.00.13
+	 **/
+	function html_taxonomy_select( $taxonomy ) {
+		
+		$terms = get_terms( $taxonomy );
+		$tax = get_taxonomy( $taxonomy );
+
+		$html = " &nbsp;";
+		$html .= "<select style=\"width:125px;\" id=\"sortby-term-$taxonomy\" name=\"sortby-term-$taxonomy\">";
+		$html .= "<option value=\"none\">" . __( 'All', 'childtheme' ) . " $tax->label</option>";
+
+		foreach ( $terms as $term ) {
+			if ( $_GET["sortby-term-$taxonomy"] == $term->slug )
+				$sel = ' selected="selected"';
+
+			$html .= "<option value=\"$term->slug\"$sel>$term->name</option>";
+			unset( $sel );
+		}
+
+		$html .= "</select>&nbsp; ";
+		
+		return $html;
+		
+	} // end function html_taxonomy_select
+	
+	
+	
+	
+	
+	
+	/**
+	 * Filter results of page based on the "restrict_manage" variable
+	 * 
+	 * @version 1.2
+	 * @updated 00.00.13
+	 **/
+	function post_type_parse_query( $query ) {
+		global $pagenow;
+		
+		// Make sure we are filtering the edit.php query
+		if ( is_admin() AND $pagenow == 'edit.php' AND $query->query_vars['post_type'] == $this->registered->_post_type AND $this->registered->have_tax_filters ) {
+			
+			foreach ( $this->registered->post_type_tax_filters as $taxonomy ) {
+				
+				if ( isset( $_GET["sortby-term-$taxonomy"] ) AND $_GET["sortby-term-$taxonomy"] != 'none' ) {
+					
+					$query->set( $taxonomy, $_GET["sortby-term-$taxonomy"] );
+				
+				} // end if ( isset
+				
+			} // end foreach ( $this->post_type_tax_filters ) 
+			
+		} // end if ( is_admin )
+	
+	} // end function post_type_parse_query
+	
+	
+	
+} // end class FAQPostType

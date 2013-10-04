@@ -149,7 +149,7 @@ class TemplatePageOptionsVCWP {
 				
 				
 				
-				// Default Metabox and Options
+				// Home Page Options
 				'home' => array(
 
 					// Metabox
@@ -207,7 +207,67 @@ class TemplatePageOptionsVCWP {
 							)
 						),
 					),
-				), // end Default Metabox and Options
+				), // end Home Page Options
+				
+				
+				
+				// Class Page Options
+				'class' => array(
+
+					// Metabox
+					'meta_box' => array(
+						'title' => 'Class Page Setting',
+						'context' => 'normal',
+						'priority' => 'core',
+						// 'desc' => 'Overall settings for various template pages.',
+						// 'callback' => array( &$this, 'custom_meta_box_option' ),
+						'save_all_settings' => 'Save', // uses value as button text & sanitize_title_with_dashes(save_all_settings) for value
+						),
+
+					// settings and options
+					'settings' => array(
+						'class_title' => array(
+							'type' => 'text',
+							'validation' => 'text',
+							'title' => 'Title',
+						),
+						'class_content' => array(
+							'type' => 'text_editor',
+							'validation' => 'text_editor',
+							'title' => 'Description',
+						),
+					),
+				), // end Class Page Options
+				
+				
+				
+				// Class Page Options
+				'faq' => array(
+
+					// Metabox
+					'meta_box' => array(
+						'title' => 'FAQ Page Setting',
+						'context' => 'normal',
+						'priority' => 'core',
+						// 'desc' => 'Overall settings for various template pages.',
+						// 'callback' => array( &$this, 'custom_meta_box_option' ),
+						'save_all_settings' => 'Save', // uses value as button text & sanitize_title_with_dashes(save_all_settings) for value
+						),
+
+					// settings and options
+					'settings' => array(
+						'title' => array(
+							'type' => 'text',
+							'validation' => 'text',
+							'title' => 'Title',
+						),
+						'content' => array(
+							'type' => 'text_editor',
+							'validation' => 'text_editor',
+							'title' => 'Description',
+						),
+					),
+				), // end Class Page Options
 				
 
 			) ) ); // end default_settings array

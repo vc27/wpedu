@@ -26,26 +26,62 @@ if ( have_posts() ) {
 					'class' => 'h1'
 				) );
 				
-				echo "<div class=\"h4\">$post->_class__tagline</div>";
-				echo "<div class=\"entry\">" . wpautop( $post->_class__short_desc ) . "</div>";
-				
 				echo "<div class=\"row-fluid item-wrapper\">";
 					
-					echo "<div class=\"span4\">";
-						echo "<div class=\"item status\"><span class=\"title\">Status:</span> $post->_class__status</div>";
-						echo "<div class=\"item price\"><span class=\"title\">Price:</span> $post->_class__price</div>";
-						if ( $post->_class__prurchase_url ) {
-							echo "<a class=\"btn btn-orange\" href=\"$post->_class__prurchase_url\">Enroll Now</a>";
-						}
+					echo "<div class=\"span7\">";
+						echo "<div class=\"h5\">$post->_class__tagline</div>";
+						echo "<div class=\"entry\">" . wpautop( $post->_class__short_desc ) . "</div>";
 					echo "</div>";
 					
-					echo "<div class=\"span8\">";
-						foreach ( $post->sessions as $k => $post->session ) {
-							echo "<div class=\"item scrollto\" data-hash=\"#session--" . $post->session->post_name . "\"><strong>Session " . ($k+1) . ":</strong> " . date( 'M jS', strtotime( $post->session->date ) ) . " <span class=\"sub-text\">@" . $post->session->time . "</span></div>";
+					echo "<div class=\"span5\">";
+						echo "<div class=\"item status\"><span class=\"title\">Status:</span> $post->_class__status</div>";
+						echo "<div class=\"item price\"><span class=\"title\">Price:</span> $post->_class__price</div>";
+						echo "<div class=\"item date\">";
+							echo "<span class=\"title\">Dates:</span> ";
+							
+							if ( isset( $post->_class__day ) AND ! empty( $post->_class__day ) ) {
+								echo "$post->_class__day: ";
+							}
+							
+							if ( isset( $post->sessions[0]->date ) AND ! empty( $post->sessions[0]->date ) ) {
+								echo date( 'M jS', strtotime( $post->sessions[0]->date ) ) . ", ";
+								echo date( 'jS', strtotime( $post->sessions[1]->date ) ) . ", ";
+								echo date( 'jS', strtotime( $post->sessions[2]->date ) ) . " & ";
+								echo date( 'jS', strtotime( $post->sessions[3]->date ) );
+							} else {
+								echo "TBD";
+							}
+								
+						echo "</div>";
+						echo "<div class=\"item item-bleed seats\"><span class=\"title\">Available Seats:</span> $post->_class__seats</div>";
+						
+						if ( $post->_class__prurchase_url ) {
+							echo "<a id=\"btn-purchase\" class=\"$post->btn_class\" href=\"$post->_class__prurchase_url\">$post->purchase_text&nbsp;&raquo;</a>";
 						}
 					echo "</div>";
 					
 				echo "</div>";
+				
+				
+				echo "<div class=\"item-wrapper\">";
+					echo "<div class=\"h5\">Classes are ";
+					
+					if ( isset( $post->sessions[0]->date ) AND ! empty( $post->sessions[0]->date ) ) {
+						echo date( 'M jS', strtotime( $post->sessions[0]->date ) ) . " to " . date( 'M jS', strtotime( $post->sessions[3]->date ) ) . " " . date( 'Y', strtotime( $post->sessions[3]->date ) );
+					} else {
+						echo "not yet scheduled.";
+					}
+					
+					echo "</div>";
+					
+					foreach ( $post->sessions as $k => $post->session ) {
+						echo "<div class=\"item scrollto\" data-hash=\"#session--" . $post->session->post_name . "\">";
+							echo "<strong>" . ($k+1) . ".&nbsp;&nbsp; " . $post->session->post_title . ":</strong> " . date( 'M jS', strtotime( $post->session->date ) ) . " <span class=\"sub-text\">@" . $post->session->time . "</span>";
+						echo "</div>";
+					}
+					
+				echo "</div>";
+				
 				
 				vc_content();
 

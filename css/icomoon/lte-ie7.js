@@ -20,7 +20,8 @@ window.onload = function() {
 			'icon-libreoffice' : '&#xe00a;',
 			'icon-location' : '&#xe00b;',
 			'icon-remove' : '&#xf00d;',
-			'icon-calendar' : '&#xf073;'
+			'icon-calendar' : '&#xf073;',
+			'icon-envelope' : '&#xf003;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, c, el;

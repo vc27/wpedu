@@ -1,6 +1,9 @@
-== 1.0.2 ==
+== 1.0.2 - 1.0.3 ==
 10.04.13
 - update single class css and template
+
+3
+- updated a lot of crap, too much to type here ;)
 
 == 1.0.1 ==
 10.03.13

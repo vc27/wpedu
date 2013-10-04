@@ -28,17 +28,6 @@ $wp_query->query( $query );
 if ( have_posts() ) { 
 	
 	
-	append__post_data( array(
-		'post_type' => array( 'class' ),
-		'custom_fields' => array( 
-			array( 'meta_key' => '_class__status', 'unique' => 1 ),
-			array( 'meta_key' => '_class__tagline', 'unique' => 1 ),
-			array( 'meta_key' => '_class__short_desc', 'unique' => 1 ),
-			array( 'meta_key' => '_class__session_1_date', 'unique' => 1 ),
-		),
-	) );
-	
-	
 	echo "<div id=\"available-classes\">";
 		echo "<div class=\"inner-wrap loop\">";
 
@@ -71,7 +60,7 @@ if ( have_posts() ) {
 								'content' => $post->_class__short_desc
 							) );
 							
-							echo "<a href=\"" . get_permalink() . "\">$post->_class__status &raquo;</a>";
+							echo "<a class=\"$post->btn_class\" href=\"" . get_permalink() . "#loop-single-class\">$post->_class__status &raquo;</a>";
 							
 						echo "</div>";
 					echo "</div>";

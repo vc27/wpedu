@@ -243,6 +243,7 @@ class ChildTheme_VC {
 		 **/
 		
 		// Custom JS
+		wp_register_script( 'waypoints', "$this->template_directory/js/waypoints.min.js" );
 		wp_register_script( 'childTheme', "$this->template_directory/js/childTheme.js", array( 'helper' ) );
 		
 	} // end function register_style_and_scripts
@@ -368,7 +369,7 @@ class ChildTheme_VC {
 		 * deregistering will be more of a pain in the ass.
 		 **/
 		wp_enqueue_script( 'helper' );
-		
+		wp_enqueue_script( 'waypoints' );
 		wp_enqueue_script( 'childTheme' );
 		
 	} // function wp_enqueue_scripts 

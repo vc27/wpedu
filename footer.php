@@ -19,7 +19,7 @@ do_action( 'inner_wrap_bottom' );
 	<?php
 	
 	if ( is_page_template('tpl-home.php') ) {
-		get_template_part( 'home-page/available-classes' );
+		get_template_part( 'available-classes' );
 	}	
 	
 	?>
