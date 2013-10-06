@@ -56,7 +56,7 @@ if ( have_posts() ) {
 						echo "<div class=\"item item-bleed seats\"><span class=\"title\">Available Seats:</span> $post->_class__seats</div>";
 						
 						if ( $post->_class__prurchase_url ) {
-							echo "<a id=\"btn-purchase\" class=\"$post->btn_class\" href=\"$post->_class__prurchase_url\">$post->purchase_text&nbsp;&raquo;</a>";
+							echo "<a id=\"btn-purchase\" class=\"$post->btn_class\" href=\"$post->_class__prurchase_url\" target=\"_blank\">$post->purchase_text&nbsp;&raquo;</a>";
 						}
 					echo "</div>";
 					
@@ -64,15 +64,10 @@ if ( have_posts() ) {
 				
 				
 				echo "<div class=\"item-wrapper\">";
-					echo "<div class=\"h5\">Classes are ";
 					
 					if ( isset( $post->sessions[0]->date ) AND ! empty( $post->sessions[0]->date ) ) {
-						echo date( 'M jS', strtotime( $post->sessions[0]->date ) ) . " to " . date( 'M jS', strtotime( $post->sessions[3]->date ) ) . " " . date( 'Y', strtotime( $post->sessions[3]->date ) );
-					} else {
-						echo "not yet scheduled.";
+						echo "<div class=\"h5\">Classes are " . date( 'M jS', strtotime( $post->sessions[0]->date ) ) . " to " . date( 'M jS', strtotime( $post->sessions[3]->date ) ) . " " . date( 'Y', strtotime( $post->sessions[3]->date ) ) . "</div>";
 					}
-					
-					echo "</div>";
 					
 					foreach ( $post->sessions as $k => $post->session ) {
 						echo "<div class=\"item scrollto\" data-hash=\"#session--" . $post->session->post_name . "\">";

@@ -44,8 +44,23 @@ var childTheme = {
 		this.faq();
 		this.classes();
 		this.singleClass();
+		this.cForms();
 		
 	}, // end init : function 
+	
+	
+	
+	/**
+	 * cForms
+	 * @version 1.0
+	 * @updated 00.00.13
+	 **/
+	cForms : function() {
+		
+		var form =jQuery('form.cform');
+		jQuery('label[for="message"]').addClass('label-message');
+		
+	}, // end cForms
 	
 	
 	

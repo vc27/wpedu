@@ -31,7 +31,7 @@ get_template_part( 'header', 'head' );
 			'theme_location' => 'primary-navigation', 
 			'container' => 'div', 
 			'container_id' => 'primary-navigation', 
-			'menu_class' => 'inner-wrap' 
+			'menu_class' => 'inner-wrap sf-menu' 
 		) );
 		?>
 			

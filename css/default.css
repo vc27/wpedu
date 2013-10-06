@@ -159,6 +159,11 @@ form select { width:80%; display:block; }
 
 
 
+/*cForms*/
+.label-message { width:auto; display:block; }
+
+
+
 
 
 
@@ -185,7 +190,7 @@ Usage - class="img img-name-here" -- allows controlled image sizes for retina di
 /*Header*/
 #header .inner-wrap { padding:40px 0; text-align:center; color:#fff; text-shadow:0 1px 2px rgba( 70,70,70,0.50 ); }
 #header .inner-wrap a { color:#fff; }
-#header .h1, #header .h4 { color:#fff; margin-bottom:0; }
+#header .h1, #header .h4 { color:#fff; margin-bottom:0; text-shadow:0 2px 4px rgba(0, 0, 0, 0.45); }
 
 
 
@@ -203,14 +208,20 @@ Usage - class="img img-name-here" -- allows controlled image sizes for retina di
 
 /* Main Navigation Links */
 #primary-navigation { height:50px; font-size:18px; font-family:'Carrois Gothic', Arial, Verdana, Helvetica, sans-serif; background:rgba(255,255,255,0.2); }
+#primary-navigation:hover { text-shadow:0 1px 2px rgba( 0,0,0,0.3 ); }
 #primary-navigation li { display:inline-block; }
-#primary-navigation a { display:inline-block; padding:12px;
+#primary-navigation .current-menu-item .sub-menu a,
+#primary-navigation a { display:inline-block; padding:12px; margin-top:7px;
 	text-transform:0 2px 2px rgba(0,0,0,0.5); color:#fff; opacity:1; text-decoration:none;
 	-webkit-transition:all 0.1s ease-in; -moz-transition:all 0.1s ease-in; -o-transition:all 0.1s ease-in; transition:all 0.1s ease-in; 
 }
+#primary-navigation .current-menu-item .sub-menu a:hover,
 #primary-navigation .current-menu-item a,
 #primary-navigation a:hover { opacity:0.7; }
-#primary-navigation .icon-reorder { color:#fff; font-size:22px; position:relative; top:4px; }
+#primary-navigation .icon-reorder { color:#fff; font-size:22px; position:relative; top:17px; }
+
+#primary-navigation .current-menu-item .sub-menu a,
+#primary-navigation .sub-menu a { padding-bottom:0; }
 
 
 /* footer-navigation */
