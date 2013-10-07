@@ -351,6 +351,7 @@ class ThemeSupport {
 		if ( ! is_admin() AND $post->post_type == 'class' ) {
 			
 			$post->_class__status = get_post_meta( $post->ID, '_class__status', true );
+			$post->_class__status_id = sanitize_title_with_dashes($post->_class__status);
 			$post->_class__cform = get_post_meta( $post->ID, '_class__cform', true );
 			$post->_class__price = get_post_meta( $post->ID, '_class__price', true );
 			$post->_class__seats = get_post_meta( $post->ID, '_class__seats', true );
@@ -413,6 +414,7 @@ class ThemeSupport {
 			
 			switch ( $post->_class__status ) {
 				case 'Pre Enroll' :
+					$post->purchase_text = 'Pre-Enrollment';
 					$post->btn_class = 'btn btn-blue';
 					break;
 				case 'Open Enrollment' :
@@ -487,6 +489,27 @@ class ThemeSupport {
 		}
 		
 	} // end function jetpack_sharing
+	
+	
+	
+	
+	
+	
+	/**
+	 * insert_cform
+	 *
+	 * @version 1.0
+	 * @updated 00.00.13
+	 **/
+	static function insert_cform( $id ) {
+		
+		if ( function_exists( 'insert_cform' ) ) {
+
+			echo insert_cform( $id );
+
+		}
+		
+	} // end function insert_cform
 	
 	
 	

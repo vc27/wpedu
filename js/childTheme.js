@@ -58,7 +58,7 @@ var childTheme = {
 	cForms : function() {
 		
 		var form =jQuery('form.cform');
-		jQuery('label[for="message"]').addClass('label-message');
+		jQuery('label[for="message"]', form).addClass('label-message');
 		
 	}, // end cForms
 	
@@ -93,6 +93,17 @@ var childTheme = {
 			}, { offset: '0%' });
 		
 		} // end if ( jQuery('body').hasClass('single-class') )
+		
+		
+		jQuery('.pre-enroll').click(function(e) {
+			var click = jQuery(this);
+			e.preventDefault();
+			jQuery('input#name').focus();
+			jQuery('html,body').animate({ 
+				scrollTop : ( jQuery(click.attr('href')).offset().top - 100 )
+				}, 300 );
+		});
+		
 		
 	}, // end singleClass : function
 	setPurchaseCloned : function() {

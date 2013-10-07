@@ -56,8 +56,11 @@ if ( have_posts() ) {
 						echo "<div class=\"item item-bleed seats\"><span class=\"title\">Available Seats:</span> $post->_class__seats</div>";
 						
 						if ( $post->_class__prurchase_url ) {
-							echo "<a id=\"btn-purchase\" class=\"$post->btn_class\" href=\"$post->_class__prurchase_url\" target=\"_blank\">$post->purchase_text&nbsp;&raquo;</a>";
+							echo "<a id=\"btn-purchase\" class=\"$post->btn_class $post->_class__status_id\" href=\"$post->_class__prurchase_url\" target=\"_blank\">$post->purchase_text&nbsp;&raquo;</a>";
+						} else {
+							echo "<a id=\"btn-purchase\" class=\"$post->btn_class $post->_class__status_id\" href=\"#form-wrapper\" target=\"_blank\">$post->purchase_text&nbsp;&raquo;</a>";
 						}
+						
 					echo "</div>";
 					
 				echo "</div>";
@@ -79,6 +82,12 @@ if ( have_posts() ) {
 				
 				
 				vc_content();
+				
+				if ( isset( $post->_class__cform ) AND ! empty( $post->_class__cform ) ) {
+					echo "<div id=\"form-wrapper\">";
+						ThemeSupport::insert_cform($post->_class__cform);
+					echo "</div>";
+				}
 
 				echo "<div class=\"clear\"></div>";
 			echo "</article>";
