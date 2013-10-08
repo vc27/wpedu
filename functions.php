@@ -308,7 +308,7 @@ class ChildTheme_VC {
 		add_action( 'vc_below_loop', 'vc_navigation_posts' );
 		
 		// Single Post Navigation
-		add_action( 'vc_below_loop', 'vc_navigation_post' );
+		// add_action( 'vc_below_loop', 'vc_navigation_post' );
 		
 		// Add Page Title
 		add_action( 'inner_wrap_top', 'vc_page_title' );

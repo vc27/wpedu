@@ -18,13 +18,13 @@ if ( have_posts() ) {
 	while ( have_posts() ) { 
 		the_post(); 
 		$comments = vc_comments( $post, array(
-			'no_comments' => __( 'Have a Question?&nbsp;&raquo;', 'parenttheme' ),
-			'one_comment' => __( 'Have a Question?&nbsp;&raquo;', 'parenttheme' ),
-			'comments' => __( 'Have a Question?&nbsp;&raquo;', 'parenttheme' ),
+			'no_comments' => __( 'Still have questions? Leave a comment &raquo;', 'parenttheme' ),
+			'one_comment' => __( 'Still have questions? Leave a comment &raquo;', 'parenttheme' ),
+			'comments' => __( 'Still have questions? Leave a comment &raquo;', 'parenttheme' ),
 			'echo' => 0,
 		) );
 
-			echo "<article id=\"post-" . $post->ID . "\" "; post_class(); echo ">";
+			echo "<article id=\"faq-" . $post->post_name . "\" "; post_class(); echo ">";
 				
 				vc_title( $wp_query->post, array( 
 					'permalink' => false,

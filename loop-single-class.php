@@ -57,6 +57,7 @@ if ( have_posts() ) {
 						
 						if ( $post->_class__prurchase_url ) {
 							echo "<a id=\"btn-purchase\" class=\"$post->btn_class $post->_class__status_id\" href=\"$post->_class__prurchase_url\" target=\"_blank\">$post->purchase_text&nbsp;&raquo;</a>";
+							echo "<span class=\"sub-text block\">secure checkout via square</span>";
 						} else {
 							echo "<a id=\"btn-purchase\" class=\"$post->btn_class $post->_class__status_id\" href=\"#form-wrapper\" target=\"_blank\">$post->purchase_text&nbsp;&raquo;</a>";
 						}

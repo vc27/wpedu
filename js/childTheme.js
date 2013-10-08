@@ -78,31 +78,26 @@ var childTheme = {
 			var btnClone = jQuery('#btn-purchase').clone();
 			jQuery(btnClone).prepend( '<span class="icon-wordpress"></span> ' + classText + ': &nbsp; ' );
 			jQuery('body').append('<div id="btn-float-wrapper" style="display:none;"></div>');
+			
+			childTheme.scrollToEnrollment();
+			
 			btn.waypoint(function() {
 				
 				if ( childTheme.getPurchaseCloned() == 1 ) {
 					jQuery('#btn-float-wrapper').fadeOut(200, function() {
 						childTheme.clearPurchaseCloned();
+						childTheme.scrollToEnrollment();
 					});
 				} else {
 					jQuery('#btn-float-wrapper').html(btnClone).fadeIn(200, function() {
-						childTheme.setPurchaseCloned()
+						childTheme.setPurchaseCloned();
+						childTheme.scrollToEnrollment();
 					});
 				}
 
 			}, { offset: '0%' });
 		
 		} // end if ( jQuery('body').hasClass('single-class') )
-		
-		
-		jQuery('.pre-enroll').click(function(e) {
-			var click = jQuery(this);
-			e.preventDefault();
-			jQuery('input#name').focus();
-			jQuery('html,body').animate({ 
-				scrollTop : ( jQuery(click.attr('href')).offset().top - 100 )
-				}, 300 );
-		});
 		
 		
 	}, // end singleClass : function
@@ -115,6 +110,26 @@ var childTheme = {
 	getPurchaseCloned : function() {
 		return childTheme.purchaseCloned;
 	},
+	
+	
+	
+	/**
+	 * scrollToEnrollment
+	 * @version 1.0
+	 * @updated 00.00.13
+	 **/
+	scrollToEnrollment : function() {
+		
+		jQuery('.pre-enroll').click(function(event) {
+			event.preventDefault();
+			var click = jQuery(this);
+			jQuery('input#name').focus();
+			jQuery('html,body').animate({ 
+				scrollTop : ( jQuery(click.attr('href')).offset().top - 100 )
+				}, 300 );
+		});
+		
+	}, // end scrollToEnrollment : function
 	
 	
 	
@@ -141,10 +156,21 @@ var childTheme = {
 	faq : function() {
 		
 		if ( jQuery('body').hasClass('post-type-archive-faq') ) {
+			
 			jQuery('body.post-type-archive-faq #content-wrap h1').prepend('<span class="icon-lifebuoy"></span>&nbsp;');
 			jQuery('body.post-type-archive-faq #loop-archive-faq .h5').click(function() {
 				jQuery(this).next().slideToggle(200);
 			});
+			
+			
+			if ( window.location.hash ) {
+				jQuery(window.location.hash + ' .entry').slideToggle(200);
+				jQuery('html,body').animate({ 
+					scrollTop : ( jQuery(window.location.hash).offset().top - 100 )
+					}, 300 );
+			}
+			
+			
 		}
 		
 	}, // end faq : function
