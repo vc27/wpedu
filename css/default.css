@@ -424,6 +424,9 @@ a.read_more:hover {}
 #comments .comments-title { margin:0 0 7px; }
 
 
+#comments .form-submit { margin-bottom:30px; }
+
+
 #comments .navigation { display:block; clear:both; text-align:left; padding:3px 7px; }
 #comments .prev-page { padding-left:7px; }
 #comments .next-page { padding-right:7px; }
@@ -466,6 +469,17 @@ a.read_more:hover {}
 .commentlist li .reply a { text-decoration:underline; font-style:italic; padding-left:10px; }
 .commentlist li ul.children { list-style:none; margin:10px 0 0 0; text-indent:0; }
 .commentlist li ul.children li { padding-bottom:0; }
+
+
+
+
+
+
+/* Items
+#################################################################################################### */
+.item-wrapper { margin-bottom:20px; }
+.item-wrapper .item .title { font-weight:800; display:inline-block; width:50px; padding-right:10px; }
+.item-wrapper .item-bleed .title { width:auto; }
 
 
 
@@ -517,10 +531,6 @@ body.post-type-archive-class #loop-archive-class .entry { padding:10px 15px 30px
 /* Class: Single
 #################################################################################################### */
 
-
-body.single-class .item-wrapper { margin-bottom:20px; }
-body.single-class .item-wrapper .item .title { font-weight:800; display:inline-block; width:50px; padding-right:10px; }
-body.single-class .item-wrapper .item-bleed .title { width:auto; }
 body.single-class .item-wrapper .btn { margin-top:10px; }
 
 body.single-class article .item-wrapper { margin:30px auto; }
@@ -549,6 +559,20 @@ body.post-type-archive-faq #loop-archive-faq .h5 { margin-left:15px; cursor:poin
 body.post-type-archive-faq #loop-archive-faq .h5 .icon-arrow-right { position:absolute; left:-10px; }
 body.post-type-archive-faq #loop-archive-faq .h5:hover { background:#f8f8f8; }
 body.post-type-archive-faq #loop-archive-faq .entry { padding:10px 30px 30px; display:none; }
+
+
+
+
+
+
+/* Team
+#################################################################################################### */
+
+body.single-team {}
+body.single-team .hentry .image-wrap { display:inline-block; width:75px; margin:0 15px 0 0; }
+body.single-team .hentry .image-wrap img { max-width:100%; height:auto; }
+body.single-team .hentry .entry { clear:none; }
+body.single-team .hentry .entry .clear { display:none; }
 
 
 

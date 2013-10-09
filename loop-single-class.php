@@ -43,7 +43,7 @@ if ( have_posts() ) {
 								echo "$post->_class__day: ";
 							}
 							
-							if ( isset( $post->sessions[0]->date ) AND ! empty( $post->sessions[0]->date ) ) {
+							if ( isset( $post->sessions[0]->date ) AND ! empty( $post->sessions[0]->date ) AND $post->sessions[0]->date != 'TBD' ) {
 								echo date( 'M jS', strtotime( $post->sessions[0]->date ) ) . ", ";
 								echo date( 'jS', strtotime( $post->sessions[1]->date ) ) . ", ";
 								echo date( 'jS', strtotime( $post->sessions[2]->date ) ) . " & ";
@@ -69,13 +69,21 @@ if ( have_posts() ) {
 				
 				echo "<div class=\"item-wrapper\">";
 					
-					if ( isset( $post->sessions[0]->date ) AND ! empty( $post->sessions[0]->date ) ) {
+					if ( isset( $post->sessions[0]->date ) AND ! empty( $post->sessions[0]->date ) AND $post->sessions[0]->date != 'TBD' ) {
 						echo "<div class=\"h5\">Classes are " . date( 'M jS', strtotime( $post->sessions[0]->date ) ) . " to " . date( 'M jS', strtotime( $post->sessions[3]->date ) ) . " " . date( 'Y', strtotime( $post->sessions[3]->date ) ) . "</div>";
+					} else {
+						echo "<div class=\"h5\">Classes dates have not yet been decided upon.</div>";
 					}
 					
 					foreach ( $post->sessions as $k => $post->session ) {
 						echo "<div class=\"item scrollto\" data-hash=\"#session--" . $post->session->post_name . "\">";
-							echo "<strong>" . ($k+1) . ".&nbsp;&nbsp; " . $post->session->post_title . ":</strong> " . date( 'M jS', strtotime( $post->session->date ) ) . " <span class=\"sub-text\">@" . $post->session->time . "</span>";
+							echo ($k+1) . ".&nbsp;&nbsp; <strong>" . $post->session->post_title . ":</strong> ";
+							if ( isset( $post->session->date ) AND ! empty( $post->session->date ) AND $post->session->date != 'TBD' ) {
+								echo date( 'M jS', strtotime( $post->session->date ) );
+							} else {
+								echo "TBD";
+							}
+							echo " <span class=\"sub-text\">@" . $post->session->time . "</span>";
 						echo "</div>";
 					}
 					

@@ -323,15 +323,19 @@ class ThemeSupport {
 	 **/
 	function pre_get_posts( $wp_query ) {
 		
-		if ( $wp_query->query['post_type'] == 'faq' ) {
+		if ( isset( $wp_query->query['post_type'] ) AND ! empty( $wp_query->query['post_type'] ) ) {
 			
-			$wp_query->set( 'orderby', 'menu_order' );
-		
-		} else if ( $wp_query->is_main_query() AND $wp_query->query['post_type'] == 'class' AND $wp_query->is_archive ) {
+			if ( $wp_query->query['post_type'] == in_array( $wp_query->query['post_type'], array( 'faq', 'team' ) ) ) {
+
+				$wp_query->set( 'orderby', 'menu_order' );
+
+			} else if ( $wp_query->is_main_query() AND $wp_query->query['post_type'] == 'class' AND $wp_query->is_archive ) {
+
+				$wp_query->set( 'orderby', 'menu_order' );
+
+			} // end if ( $wp_query->is_main_query() )
 			
-			$wp_query->set( 'orderby', 'menu_order' );
-			
-		} // end if ( $wp_query->is_main_query() )
+		}
 		
 	} // end function pre_get_posts
 	
@@ -424,10 +428,41 @@ class ThemeSupport {
 				case 'In Session' :
 					$post->btn_class = 'btn btn-gray';
 					break;
+				case 'Express Interest' :
+					$post->purchase_text = 'Express an Interest in this class';
+					$post->btn_class = 'btn btn-blue';
+					break;
 			} // end switch ( $post->_class_status )
 			
 			
-		} // end if ( $post->post_type == 'class' )
+		} else if ( ! is_admin() AND $post->post_type == 'team' ) {
+			
+			$post->_team__active = get_post_meta( $post->ID, '_team__active', true );
+			$post->_team__site_url = get_post_meta( $post->ID, '_team__site_url', true );
+			$post->_team__twitter_username = get_post_meta( $post->ID, '_team__twitter_username', true );
+			$post->_team__organizer = get_post_meta( $post->ID, '_team__organizer', true );
+			$post->_team__instructor = get_post_meta( $post->ID, '_team__instructor', true );
+			$post->_team__short_desc = get_post_meta( $post->ID, '_team__short_desc', true );
+			
+			
+			if ( $post->_team__active ) {
+				$post->_team__active_text = "<span class=\"title\">Active:</span> <span class=\"icon-ok orange\"></span>";
+			} else {
+				$post->_team__active_text = "<span class=\"title\">Inactive</span>";
+			}
+			$post->_team__site_url_text = "<span class=\"title\">Site:</span> <a href=\"$post->_team__site_url\" target=\"_blank\">$post->_team__site_url</a>";
+			$post->_team__twitter_text = "<span class=\"title\">Twitter:</span> <a href=\"http://twitter.com/$post->_team__twitter_username\" target=\"_blank\">@$post->_team__twitter_username</a>";
+			
+			$post->_team__organizer_text = '';
+			if ( $post->_team__organizer ) {
+				$post->_team__organizer_text = "<span class=\"title\">Organizer:</span> <span class=\"icon-ok orange\"></span>";
+			}
+			$post->_team__instructor_text = '';
+			if ( $post->_team__instructor ) {
+				$post->_team__instructor_text = "<span class=\"title\">Instructor:</span> <span class=\"icon-ok orange\"></span>";
+			}
+			
+		} // end if ( $post->post_type == '' )
 		
 	} // end function the_post 
 	

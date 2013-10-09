@@ -120,7 +120,7 @@ var childTheme = {
 	 **/
 	scrollToEnrollment : function() {
 		
-		jQuery('.pre-enroll').click(function(event) {
+		jQuery('.pre-enroll, .express-interest').click(function(event) {
 			event.preventDefault();
 			var click = jQuery(this);
 			jQuery('input#name').focus();

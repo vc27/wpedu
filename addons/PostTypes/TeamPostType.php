@@ -1,6 +1,6 @@
 <?php
 /**
- * File Name ClassPostType.php
+ * File Name TeamPostType.php
  * @package WordPress
  * @subpackage ParentTheme_VC
  * @license GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -14,13 +14,13 @@
 
 
 /**
- * ClassPostType
+ * TeamPostType
  *
  * @version 1.0
  * @updated 00.00.13
  **/
-$ClassPostType = new ClassPostType();
-class ClassPostType {
+$TeamPostType = new TeamPostType();
+class TeamPostType {
 	
 	
 	
@@ -46,16 +46,15 @@ class ClassPostType {
 	function __construct() {
 		
 		$this->register_post_type();
-		$this->register_postmeta();
 		
 		// hook method after_setup_theme
 		// add_action( 'after_setup_theme', array( &$this, 'after_setup_theme' ) );
 
 		// hook method init
-		// add_action( 'init', array( &$this, 'init' ) );
+		add_action( 'init', array( &$this, 'init' ) );
 
 		// hook method admin_init
-		add_action( 'admin_init', array( &$this, 'admin_init' ) );
+		// add_action( 'admin_init', array( &$this, 'admin_init' ) );
 		
 		// Add a metabox to this post-type
 		// add_filter( 'tester_metabox_id-included_post_types', array( &$this, 'add_external_metaboxes' ) );
@@ -98,7 +97,7 @@ class ClassPostType {
 	 **/
 	function init() {
 		
-        //
+		$this->register_postmeta();
 		
 	} // end function init
 	
@@ -140,6 +139,13 @@ class ClassPostType {
 		// Add column specific filtering
 		// add_filter( 'manage_edit-' . $this->registered->_post_type . '_sortable_columns', array( &$this, 'column_register_sortable' ) );
 		// add_filter( 'request', array( &$this, 'column_orderby' ) );
+		
+		// Added for taxonomy filtering
+		/*
+		if ( $this->registered->have_tax_filters ) {
+			add_action( 'restrict_manage_posts', array( &$this, 'restrict_manage_html_filters' ) );
+			add_filter( 'pre_get_posts', array( &$this, 'post_type_parse_query' ) );
+		}*/
 		
 	} // end function admin_init
 	
@@ -209,21 +215,21 @@ class ClassPostType {
 	 **/
 	function register_post_type() {
 		
-		$this->registered_post_type = register__post_type( array(
+		$this->registered = register__post_type( array(
 			'post_type' => array(
 				'labels' => array(
-					'name' => __( 'Class', 'childtheme' ),
-					'singular_name' => __( 'Class', 'childtheme' ),
+					'name' => __( 'Team', 'childtheme' ),
+					'singular_name' => __( 'Team', 'childtheme' ),
 					'add_new' => __( 'Add New', 'childtheme' ),
 					'add_new_item' => __( 'Add New', 'childtheme' ),
-					'edit_item' => __( 'Edit Class', 'childtheme' ),
-					'new_item' => __( 'New Class', 'childtheme' ),
-					'view_item' => __( 'View Class', 'childtheme' ),
-					'search_items' => __( 'Search Class', 'childtheme' ),
-					'not_found' => __( 'No Class found', 'childtheme' ),
-					'not_found_in_trash' => __( 'No Class found in Trash', 'childtheme' ), 
+					'edit_item' => __( 'Edit Team', 'childtheme' ),
+					'new_item' => __( 'New Team', 'childtheme' ),
+					'view_item' => __( 'View Team', 'childtheme' ),
+					'search_items' => __( 'Search Team', 'childtheme' ),
+					'not_found' => __( 'No Team found', 'childtheme' ),
+					'not_found_in_trash' => __( 'No Team found in Trash', 'childtheme' ), 
 					'parent_item_colon' => '',
-					'menu_name' => __( 'Classes', 'childtheme' )
+					'menu_name' => __( 'Team', 'childtheme' )
 				),
 
 				// 'description' => '',
@@ -233,7 +239,7 @@ class ClassPostType {
 				'show_ui' => true,
 				'show_in_menu' => 'edit.php?post_type=page',
 				// 'menu_position' => null,
-				// 'menu_icon' => get_stylesheet_directory_uri() . "/addons/PostTypes/images/class-16x16.png", // is set in class construct
+				// 'menu_icon' => get_stylesheet_directory_uri() . "/addons/PostTypes/images/team-16x16.png", // is set in class construct
 				'capability_type' => 'post', // requires 'page' to call in post_parent
 				// 'capabilities' => array(), --> See codex for detailed description
 				// 'map_meta_cap' => false,
@@ -254,24 +260,35 @@ class ClassPostType {
 				),
 
 				// 'register_meta_box_cb' => '', --> managed via class method add_meta_boxes()
-				// 'taxonomies' => array('post_tag', 'class-tax-hierarchal'), // array of registered taxonomies
+				// 'taxonomies' => array('post_tag', 'team-tax-hierarchal'), // array of registered taxonomies
 				// 'permalink_epmask' => 'EP_PERMALINK',
 				'has_archive' => true, // Enables post type archives. Will use string as archive slug.
 
 				'rewrite' => array( // Permalinks
-					'slug' => 'class',
+					'slug' => 'team',
 					// 'with_front' => '', // set this to false to over-write a wp-admin-permalink structure
 					// 'feeds' => '', // default to has_archive value
 					// 'pages' => true,
 				),
 
-				'query_var' => 'class', // This goes to the WP_Query schema
+				'query_var' => 'team', // This goes to the WP_Query schema
 				'can_export' => true,
 				// 'show_in_nav_menus' => '', // value of public argument
 				'_builtin' => false, 
 				'_edit_link' => 'post.php?post=%d',
 
 			), // end 'post_type'
+
+
+			// add_image_size( $name, $width, $height, $crop )
+			'featured_image_sizes' => array(
+				array(
+					'name' => 'team-image',
+					'width' => '512',
+					'height' => '512',
+					'crop' => false,
+				),
+			),
 
 		) );
 		
@@ -293,8 +310,8 @@ class ClassPostType {
 		if ( is_admin() ) {
 			
 			$options = array(
-				'id' => 'classes_metabox_id', // required
-				'title' => __( 'Class Attributes', 'childtheme' ), 
+				'id' => 'team_metabox_id', // required
+				'title' => __( 'Instructor Attributes', 'childtheme' ), 
 				'context' => 'normal', // options: normal, side
 				'priority' => 'high', // ('high', 'core', 'default' or 'low')
 				// 'desc' => 'Metabox description can go here.',
@@ -302,188 +319,40 @@ class ClassPostType {
 				'post_meta' => array( // array of post_meta fields
 					
 					array(
-						'type' => 'select',
-						'validation' => 'select',
-						'title' => __( 'Status', 'childtheme' ),
-						'name' => '_class__status',
-						'options' => array(
-							'Pre Enroll' => 'Pre Enroll',
-							'Open Enrollment' => 'Open Enrollment',
-							'In Session' => 'In Session',
-							'Express Interest' => 'Express Interest'
-						)
-					),
-					array(
-						'type' => 'select_cform',
-						'validation' => 'select',
-						'title' => __( 'Contact Form', 'childtheme' ),
-						'name' => '_class__cform',
+						'type' => 'checkbox',
+						'validation' => 'checkbox',
+						'title' => __( 'Active', 'childtheme' ),
+						'name' => '_team__active',
 					),
 					array(
 						'type' => 'text',
 						'validation' => 'text',
-						'title' => __( 'Price', 'childtheme' ),
-						'name' => '_class__price',
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'number',
-						'title' => __( 'Available Seats', 'childtheme' ),
-						'name' => '_class__seats',
-					),
-					array(
-						'type' => 'select',
-						'validation' => 'select',
-						'title' => __( 'Day of the week', 'childtheme' ),
-						'name' => '_class__day',
-						'options' => array(
-							'Choose a day' => '',
-							'Sunday' => 'Sunday',
-							'Monday' => 'Monday',
-							'Tuesday' => 'Tuesday',
-							'Wednesday' => 'Wednesday',
-							'Thursday' => 'Thursday',
-							'Friday' => 'Friday',
-							'Saturday' => 'Saturday',
-						),
+						'title' => __( 'Site Url', 'childtheme' ),
+						'name' => '_team__site_url',
 					),
 					array(
 						'type' => 'text',
 						'validation' => 'text',
-						'title' => __( 'Purchase URL', 'childtheme' ),
-						'name' => '_class__prurchase_url',
+						'title' => __( 'Twitter username', 'childtheme' ),
+						'name' => '_team__twitter_username',
 					),
 					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Tagline', 'childtheme' ),
-						'name' => '_class__tagline',
+						'type' => 'checkbox',
+						'validation' => 'checkbox',
+						'title' => __( 'Organizer', 'childtheme' ),
+						'name' => '_team__organizer',
+					),
+					array(
+						'type' => 'checkbox',
+						'validation' => 'checkbox',
+						'title' => __( 'Instructor', 'childtheme' ),
+						'name' => '_team__instructor',
 					),
 					array(
 						'type' => 'simple_text_editor',
 						'validation' => 'text_editor',
 						'title' => __( 'Short Desc', 'childtheme' ),
-						'name' => '_class__short_desc',
-					),
-					
-					
-					// Session 1
-					array(
-						'type' => 'title',
-						'validation' => false,
-						'title' => '<strong>' . __( 'Session 1', 'childtheme' ) . "</strong>",
-						'name' => '_class__session_1_title',
-					),
-					array(
-						'type' => 'select_post',
-						'validation' => 'select',
-						'title' => __( 'Session 1', 'childtheme' ),
-						'name' => '_class__session_1',
-						'options' => array(
-							'post_type' => 'session',
-						)
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Date', 'childtheme' ),
-						'name' => '_class__session_1_date',
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Time', 'childtheme' ),
-						'name' => '_class__session_1_time',
-					),
-					
-					
-					// Session 2
-					array(
-						'type' => 'title',
-						'validation' => false,
-						'title' => '<strong>' . __( 'Session 2', 'childtheme' ) . "</strong>",
-						'name' => '_class__session_2_title',
-					),
-					array(
-						'type' => 'select_post',
-						'validation' => 'select',
-						'title' => __( 'Session 2', 'childtheme' ),
-						'name' => '_class__session_2',
-						'options' => array(
-							'post_type' => 'session',
-						)
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Date', 'childtheme' ),
-						'name' => '_class__session_2_date',
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Time', 'childtheme' ),
-						'name' => '_class__session_2_time',
-					),
-					
-					
-					// Session 33
-					array(
-						'type' => 'title',
-						'validation' => false,
-						'title' => '<strong>' . __( 'Session 3', 'childtheme' ) . "</strong>",
-						'name' => '_class__session_3_title',
-					),
-					array(
-						'type' => 'select_post',
-						'validation' => 'select',
-						'title' => __( 'Session 3', 'childtheme' ),
-						'name' => '_class__session_3',
-						'options' => array(
-							'post_type' => 'session',
-						)
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Date', 'childtheme' ),
-						'name' => '_class__session_3_date',
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Time', 'childtheme' ),
-						'name' => '_class__session_3_time',
-					),
-					
-					
-					// Session 4
-					array(
-						'type' => 'title',
-						'validation' => false,
-						'title' => '<strong>' . __( 'Session 4', 'childtheme' ) . "</strong>",
-						'name' => '_class__session_4_title',
-					),
-					array(
-						'type' => 'select_post',
-						'validation' => 'select',
-						'title' => __( 'Session 4', 'childtheme' ),
-						'name' => '_class__session_4',
-						'options' => array(
-							'post_type' => 'session',
-						)
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Date', 'childtheme' ),
-						'name' => '_class__session_4_date',
-					),
-					array(
-						'type' => 'text',
-						'validation' => 'text',
-						'title' => __( 'Time', 'childtheme' ),
-						'name' => '_class__session_4_time',
+						'name' => '_team__short_desc',
 					),
 					
 					
@@ -615,4 +484,101 @@ class ClassPostType {
 	
 	
 	
-} // end class ClassPostType
+	
+	
+	
+	/**
+	 * Add html for dropdown select containing taxonomies
+	 * 
+	 * @version 1.2
+	 * @updated 00.00.13
+	 *
+	 * Notes:
+	 * There are no parameters, but there are two globals available
+	 * Available:
+	 * $post_type_object->taxonomies
+	 * $post_type_object->query_var
+	 **/
+	function restrict_manage_html_filters() {
+		global $post_type_object, $cat;
+		
+		if ( $post_type_object->query_var == $this->registered->_post_type AND $this->registered->have_tax_filters ) {
+			
+			foreach ( $this->registered->post_type_tax_filters as $taxonomy ) {
+				
+				echo $this->html_taxonomy_select( $taxonomy );
+				
+			} // end foreach ( $this->post_type_tax_filters )
+			
+		} // end if ( post_type )
+		
+	} // end restrict_manage_html_filters
+	
+	
+	
+	
+	
+	
+	/**
+	 * Build html for dropdown select containing taxonomies
+	 * 
+	 * @version 1.2
+	 * @updated 00.00.13
+	 **/
+	function html_taxonomy_select( $taxonomy ) {
+		
+		$terms = get_terms( $taxonomy );
+		$tax = get_taxonomy( $taxonomy );
+
+		$html = " &nbsp;";
+		$html .= "<select style=\"width:125px;\" id=\"sortby-term-$taxonomy\" name=\"sortby-term-$taxonomy\">";
+		$html .= "<option value=\"none\">" . __( 'All', 'childtheme' ) . " $tax->label</option>";
+
+		foreach ( $terms as $term ) {
+			if ( $_GET["sortby-term-$taxonomy"] == $term->slug )
+				$sel = ' selected="selected"';
+
+			$html .= "<option value=\"$term->slug\"$sel>$term->name</option>";
+			unset( $sel );
+		}
+
+		$html .= "</select>&nbsp; ";
+		
+		return $html;
+		
+	} // end function html_taxonomy_select
+	
+	
+	
+	
+	
+	
+	/**
+	 * Filter results of page based on the "restrict_manage" variable
+	 * 
+	 * @version 1.2
+	 * @updated 00.00.13
+	 **/
+	function post_type_parse_query( $query ) {
+		global $pagenow;
+		
+		// Make sure we are filtering the edit.php query
+		if ( is_admin() AND $pagenow == 'edit.php' AND $query->query_vars['post_type'] == $this->registered->_post_type AND $this->registered->have_tax_filters ) {
+			
+			foreach ( $this->registered->post_type_tax_filters as $taxonomy ) {
+				
+				if ( isset( $_GET["sortby-term-$taxonomy"] ) AND $_GET["sortby-term-$taxonomy"] != 'none' ) {
+					
+					$query->set( $taxonomy, $_GET["sortby-term-$taxonomy"] );
+				
+				} // end if ( isset
+				
+			} // end foreach ( $this->post_type_tax_filters ) 
+			
+		} // end if ( is_admin )
+	
+	} // end function post_type_parse_query
+	
+	
+	
+} // end class TeamPostType

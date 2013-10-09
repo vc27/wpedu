@@ -1,3 +1,8 @@
+== 1.0.7 ==
+10.09.13
+- added "Express Interest"
+- addition of "Team" post type and templates
+
 == 1.0.6 ==
 10.08.13
 - minor tweaks to css and php
