@@ -1,3 +1,7 @@
+== 1.0.6 ==
+10.08.13
+- minor tweaks to css and php
+
 == 1.0.5 ==
 10.07.13
 - various updates

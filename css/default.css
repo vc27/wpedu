@@ -52,6 +52,17 @@ a:hover { opacity:0.7; }
 
 
 
+#mc_message span,
+#mc_message strong,
+.cf_info { display:block; font-size:16px; color:#464646; text-shadow:none; line-height:26px; font-family:Arial, Verdana, Helvetica; padding:10px; margin:5px 5px 10px; border-radius:7px; -moz-border-radius:7px; -webkit-border-radius:7px; -o-border-radius:7px; }
+.mc_success_msg, .success { border:solid 1px #21759b; background:#e8f1f5; }
+.mc_error_msg, .failure { border:solid 1px #af3222; background:#f7eae8; }
+
+form .mc_success_msg,
+form .mc_error_msg { color:#464646; }
+
+
+
 
 
 
@@ -105,10 +116,10 @@ form.cform input[type="text"] { }
 form.cform textarea { display:block; }
 span.reqtxt, span.emailreqtxt { font-size:10px; font-style:italic; display:none; }
 form.cform .cf_li_err,
-form.cform .cf_li_err label { color:red !important; }
-form.cform input.cf_error { border:solid 1px red; }
+form.cform .cf_li_err label { color:#af3222 !important; }
+form.cform input.cf_error { border:solid 1px #af3222; }
 form.cform #usermessagea { padding:10px 0; }
-form.cform .failure { color:red; text-align:center; padding-bottom:7px; }
+form.cform .failure { color:#af3222; text-align:center; padding-bottom:7px; }
 
 
 
@@ -134,7 +145,7 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus { background:#fff; }
 
-label.error { color:red; }
+label.error { color:#f7eae8; }
 button,
 input[type="button"],
 input[type="submit"] { display:block; margin-top:7px; }
@@ -146,6 +157,7 @@ form li { margin-bottom:10px; }
 /*Sidebar*/
 .mc_interests_header,
 form label { color:#464646; font-size:18px; line-height:23px; display:inline-block; width:100px; vertical-align:top; }
+form .mc_var_label, form .mc_interest_label, form .mc_input,
 form input { display:inline-block; vertical-align:top; }
 form select { width:80%; display:block; }
 
@@ -168,8 +180,10 @@ form select { width:80%; display:block; }
 
 /*cForms*/
 form.cform { margin-top:15px; }
+form .mc_input { width:auto; }
 .label-message { width:auto; display:block; }
 .cformselect { width:auto; }
+.widget_mailchimpsf_widget label { width:70px; }
 
 
 
@@ -287,7 +301,7 @@ Usage - class="img img-name-here" -- allows controlled image sizes for retina di
 .entry a {}
 .entry a:hover {}
 
-a.read_more { display:block; }
+a.read_more {}
 a.read_more:hover {}
 
 .entry .aligncenter { display:block; margin:0 auto 15px; }
@@ -529,6 +543,8 @@ body.single-class #sessions .hentry li { padding-bottom:0; }
 #################################################################################################### */
 
 body.post-type-archive-faq {}
+body.post-type-archive-faq #loop-archive-faq .hentry { margin-top:25px; }
+body.post-type-archive-faq #loop-archive-faq .hentry:first-child { margin-top:0; }
 body.post-type-archive-faq #loop-archive-faq .h5 { margin-left:15px; cursor:pointer; padding:5px; -webkit-transition:all 0.1s ease-in; -moz-transition:all 0.1s ease-in; -o-transition:all 0.1s ease-in; transition:all 0.1s ease-in; }
 body.post-type-archive-faq #loop-archive-faq .h5 .icon-arrow-right { position:absolute; left:-10px; }
 body.post-type-archive-faq #loop-archive-faq .h5:hover { background:#f8f8f8; }

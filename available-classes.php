@@ -56,8 +56,12 @@ if ( have_posts() ) {
 							
 							echo "<div class=\"h5\">$post->_class__tagline</div>";
 							
-							vc_content( array(
-								'content' => $post->_class__short_desc
+							vc_excerpt( $post, array(
+								'show_item' => true,
+								'text' => $post->_class__short_desc,
+								'read_more' => '[...]',
+								'count' => 25,
+								'strip_tags' => '<p>',
 							) );
 							
 							echo "<a class=\"$post->btn_class\" href=\"" . get_permalink() . "#loop-single-class\">$post->_class__status &raquo;</a>";

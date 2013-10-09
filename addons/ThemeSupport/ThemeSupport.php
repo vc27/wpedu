@@ -53,7 +53,7 @@ class ThemeSupport {
 		
 		// add_action( 'admin_init', array( &$this, 'admin_init' ) );
 		
-		// add_action( 'wp', array( &$this, 'wp' ) );
+		add_action( 'wp', array( &$this, 'wp' ) );
 		
 		// add_action( 'widgets_init', array( &$this, 'widgets_init' ) );
 
@@ -152,7 +152,7 @@ class ThemeSupport {
 		// add_filter( 'body_class', array( &$this, 'body_class' ) );
 		
 		$this->remove__jetpack_share();
-		$this->remove__polldaddy_show_rating();
+		// $this->remove__polldaddy_show_rating();
 		
 	} // end function wp
 	
