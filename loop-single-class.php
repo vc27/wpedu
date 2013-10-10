@@ -25,7 +25,11 @@ if ( have_posts() ) {
 					'permalink' => false,
 					'class' => 'h1'
 				) );
-				
+
+
+
+
+                // Primary Content
 				echo "<div class=\"row-fluid item-wrapper\">";
 					
 					echo "<div class=\"span7\">";
@@ -66,41 +70,94 @@ if ( have_posts() ) {
 					
 				echo "</div>";
 				
+
+
+                // Session Dates
+                if ( isset( $post->sessions ) AND is_array( $post->sessions ) ) {
+
+                    echo "<div class=\"item-wrapper\">";
+
+                    if ( isset( $post->sessions[0]->date ) AND ! empty( $post->sessions[0]->date ) AND $post->sessions[0]->date != 'TBD' ) {
+                        echo "<div class=\"h5\">Classes are " . date( 'M jS', strtotime( $post->sessions[0]->date ) ) . " to " . date( 'M jS', strtotime( $post->sessions[3]->date ) ) . " " . date( 'Y', strtotime( $post->sessions[3]->date ) ) . "</div>";
+                    }
+
+                    foreach ( $post->sessions as $k => $post->session ) {
+                        echo "<div class=\"item scrollto\" data-hash=\"#session--" . $post->session->post_name . "\">";
+                        echo ($k+1) . ".&nbsp;&nbsp; <strong>" . $post->session->post_title . ":</strong> ";
+                        if ( isset( $post->session->date ) AND ! empty( $post->session->date ) AND $post->session->date != 'TBD' ) {
+                            echo date( 'M jS', strtotime( $post->session->date ) );
+                        } else {
+                            echo "TBD";
+                        }
+                        echo " <span class=\"sub-text\">@" . $post->session->time . "</span>";
+                        echo "</div>";
+                    }
+
+                    echo "</div>";
+                }
 				
-				echo "<div class=\"item-wrapper\">";
-					
-					if ( isset( $post->sessions[0]->date ) AND ! empty( $post->sessions[0]->date ) AND $post->sessions[0]->date != 'TBD' ) {
-						echo "<div class=\"h5\">Classes are " . date( 'M jS', strtotime( $post->sessions[0]->date ) ) . " to " . date( 'M jS', strtotime( $post->sessions[3]->date ) ) . " " . date( 'Y', strtotime( $post->sessions[3]->date ) ) . "</div>";
-					} else {
-						echo "<div class=\"h5\">Classes dates have not yet been decided upon.</div>";
-					}
-					
-					foreach ( $post->sessions as $k => $post->session ) {
-						echo "<div class=\"item scrollto\" data-hash=\"#session--" . $post->session->post_name . "\">";
-							echo ($k+1) . ".&nbsp;&nbsp; <strong>" . $post->session->post_title . ":</strong> ";
-							if ( isset( $post->session->date ) AND ! empty( $post->session->date ) AND $post->session->date != 'TBD' ) {
-								echo date( 'M jS', strtotime( $post->session->date ) );
-							} else {
-								echo "TBD";
-							}
-							echo " <span class=\"sub-text\">@" . $post->session->time . "</span>";
-						echo "</div>";
-					}
-					
-				echo "</div>";
-				
-				
+
+
+                // Text Editor
 				vc_content();
-				
+
+
+
+                // Contact Form
 				if ( isset( $post->_class__cform ) AND ! empty( $post->_class__cform ) ) {
 					echo "<div id=\"form-wrapper\">";
 						ThemeSupport::insert_cform($post->_class__cform);
 					echo "</div>";
 				}
 
+
+
+                // Instructor
+                if ( $post->_class__instructor_id ) {
+
+                    echo "<div id=\"loop-archive-team\">";
+
+                        echo "<div class=\"hentry\">";
+
+                            echo "<div class=\"h5\">Instructor</div>";
+                                $featured__image = featured__image( $post->instructor, array(
+                                    'before' => '<div class="image-wrap">',
+                                    'after' => '</div>',
+                                    'permalink' => false,
+                                    'post_thumbnail_size' => 'team-image',
+                                    'echo' => 0
+                                ) );
+                                vc_title( $post->instructor, array(
+                                    'before' => $featured__image . ' ',
+                                    'permalink' => true,
+                                    'element' => 'div',
+                                    'class' => 'h4'
+                                ) );
+                                if ( $post->instructor->_team__short_desc ) {
+                                    vc_content( array(
+                                        'content' => $post->instructor->_team__short_desc
+                                    ) );
+                                }
+
+                            echo "<div class=\"clear\"></div>";
+                        echo "</div>";
+
+
+                    echo "<div class=\"clear\"></div>";
+                    echo "</div>";
+                }
+
+
+
+
 				echo "<div class=\"clear\"></div>";
 			echo "</article>";
-			
+            // end Primary Content
+
+
+
+
+            // Session Loop
 			if ( $post->have_session_1 OR $post->have_session_2 OR $post->have_session_3 OR $post->have_session_4 ) {
 				
 				echo "<div id=\"sessions\">";

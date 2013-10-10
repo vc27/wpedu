@@ -46,12 +46,13 @@ class TeamPostType {
 	function __construct() {
 		
 		$this->register_post_type();
+        $this->register_postmeta();
 		
 		// hook method after_setup_theme
 		// add_action( 'after_setup_theme', array( &$this, 'after_setup_theme' ) );
 
 		// hook method init
-		add_action( 'init', array( &$this, 'init' ) );
+		// add_action( 'init', array( &$this, 'init' ) );
 
 		// hook method admin_init
 		// add_action( 'admin_init', array( &$this, 'admin_init' ) );
@@ -97,7 +98,7 @@ class TeamPostType {
 	 **/
 	function init() {
 		
-		$this->register_postmeta();
+
 		
 	} // end function init
 	
@@ -359,7 +360,7 @@ class TeamPostType {
 				),
 			);
 			
-			$this->registered_postmeta = register__postmeta( array( $this->registered_post_type->_post_type ), $options );
+			$this->registered_postmeta = register__postmeta( array( 'team' ), $options );
 			
 		} // end if ( is_admin() )
 		

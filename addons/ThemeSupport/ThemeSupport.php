@@ -368,6 +368,17 @@ class ThemeSupport {
 			$post->_class__session_3 = get_post_meta( $post->ID, '_class__session_3', true );
 			$post->_class__session_4 = get_post_meta( $post->ID, '_class__session_4', true );
 			$post->sessions = array();
+
+
+
+            // Instructor
+            $post->_class__instructor_id = get_post_meta( $post->ID, '_class__instructor_id', true );
+            if ( $post->_class__instructor_id ) {
+                $post->instructor = get_post($post->_class__instructor_id);
+                $post->instructor->_team__short_desc = get_post_meta( $post->_class__instructor_id, '_team__short_desc', true );
+            }
+
+
 			
 			
 			// Session 1

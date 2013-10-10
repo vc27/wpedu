@@ -313,6 +313,15 @@ class ClassPostType {
 							'Express Interest' => 'Express Interest'
 						)
 					),
+                    array(
+                        'type' => 'select_post',
+                        'validation' => 'select',
+                        'title' => __( 'Instructor', 'childtheme' ),
+                        'name' => '_class__instructor_id',
+                        'options' => array(
+                            'post_type' => 'team',
+                        )
+                    ),
 					array(
 						'type' => 'select_cform',
 						'validation' => 'select',

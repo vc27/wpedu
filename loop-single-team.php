@@ -11,12 +11,16 @@
 
 // Default Loop
 if ( have_posts() ) { 
-	$i = 0; 
-	
-	echo "<div id=\"loop-default\" class=\"loop loop-page\">";
+	$i = 0;
+    $back_link = "<a class=\"btn-back\" href=\"" . home_url() . "/" . $wp_query->post->post_type . "\">&laquo; Back to Team Members</a>";
+
+    echo "<div class=\"back-link back-link-top\">$back_link</div>";
+
+	echo "<div id=\"loop-archive-team\" class=\"loop loop-page\">";
 
 		while ( have_posts() ) { 
-			the_post(); 
+			the_post();
+
 			$featured__image = featured__image( $post, array( 
 				'before' => '<div class="image-wrap">',
 				'after' => '</div>',
@@ -55,8 +59,8 @@ if ( have_posts() ) {
 	
 		echo "<div class=\"clear\"></div>";
 	echo "</div>";
-	
-	echo "<a class=\"btn-back\" href=\"" . home_url() . "/" . $wp_query->post->post_type . "\">&laquo; Back to Team Members</a>";
+
+    echo "<div class=\"back-link back-link-bot\">$back_link</div>";
 
 
 } // End if(have_post())

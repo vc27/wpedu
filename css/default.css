@@ -284,6 +284,13 @@ Usage - class="img img-name-here" -- allows controlled image sizes for retina di
 
 
 
+.back-link { dipslay:block; }
+.back-link-top { position:relative; top:-30px; left:0; }
+.back-link-bot {}
+
+
+
+
 /* Meta Data */
 .meta-data { padding-bottom:10px; font-size:18px; color:#a0a0a0; font-family:'Carrois Gothic', Arial, Verdana, Helvetica, sans-serif; }
 .post-meta-data {}
@@ -317,7 +324,7 @@ a.read_more:hover {}
 
 .entry blockquote {}
 .entry blockquote p { padding:0; margin:10px 45px 20px 20px; }
-.entry ol, .entry ul { margin:5px 0 15px 20px; }
+.entry ol, .entry ul { margin:0px 0 15px 20px; }
 .entry ul { list-style:disc; }
 .entry ol { list-style:decimal; }
 .entry strong {}
@@ -537,6 +544,8 @@ body.single-class article .item-wrapper { margin:30px auto; }
 body.single-class article .scrollto { padding-left:7px; } 
 body.single-class article .scrollto:hover { background:#f8f8f8; }
 
+body.single-class #loop-archive-team { margin-top:30px; }
+
 body.single-class #sessions { margin-top:60px; }
 body.single-class #sessions .session-content { margin-top:30px; }
 body.single-class #sessions .hentry { margin-top:60px; }
@@ -568,11 +577,14 @@ body.post-type-archive-faq #loop-archive-faq .entry { padding:10px 30px 30px; di
 /* Team
 #################################################################################################### */
 
-body.single-team {}
-body.single-team .hentry .image-wrap { display:inline-block; width:75px; margin:0 15px 0 0; }
-body.single-team .hentry .image-wrap img { max-width:100%; height:auto; }
-body.single-team .hentry .entry { clear:none; }
-body.single-team .hentry .entry .clear { display:none; }
+
+#loop-archive-team .image-wrap { float:left; display:inline-block; width:75px; margin:0 15px 0 0; }
+#loop-archive-team .image-wrap img { max-width:100%; height:auto; }
+#loop-archive-team .hentry .entry { clear:none; }
+#loop-archive-team .hentry .entry .clear { display:none; }
+
+#loop-archive-team .hentry { margin-top:30px; }
+#loop-archive-team .hentry:first-child { margin-top:0; }
 
 
 
