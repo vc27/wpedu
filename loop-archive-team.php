@@ -14,7 +14,7 @@ if ( have_posts() ) {
 	$i = 0; 
 	
 	echo "<div id=\"loop-archive-team\" class=\"loop\">";
-
+    echo "<div class=\"h3\">Instructors & Organizers</div>";
 	while ( have_posts() ) { 
 		the_post();
 
@@ -31,7 +31,7 @@ if ( have_posts() ) {
                     'before' => $featured__image . ' ',
                     'permalink' => true,
                     'element' => 'div',
-                    'class' => 'h3'
+                    'class' => 'h4'
                 ) );
                 if ( $post->_team__short_desc ) {
                     vc_content( array(

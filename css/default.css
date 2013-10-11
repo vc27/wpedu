@@ -169,6 +169,7 @@ form select { width:80%; display:block; }
 #mc-indicates-required { display:none; }
 
 .mc_signup_submit { margin-top:10px; display:block; text-align:left; }
+.mc_form_inside { padding-top:10px; }
 
 
 
@@ -206,7 +207,7 @@ Usage - class="img img-name-here" -- allows controlled image sizes for retina di
 #################################################################################################### */
 
 .outer-wrap { position:relative; }
-.inner-wrap { max-width:920px; position:relative; margin:0 auto; text-align:left; }
+.inner-wrap { padding:0 10px; max-width:900px; position:relative; margin:0 auto; text-align:left; }
 
 
 
@@ -245,6 +246,8 @@ Usage - class="img img-name-here" -- allows controlled image sizes for retina di
 
 #primary-navigation .current-menu-item .sub-menu a,
 #primary-navigation .sub-menu a { padding-bottom:0; }
+
+#primary-navigation .tinynav { display:none; position:relative; top:15px; max-width:260px; margin:0 auto; }
 
 
 /* footer-navigation */
@@ -495,7 +498,7 @@ a.read_more:hover {}
 
 /* available-classes
 #################################################################################################### */
-#available-classes .hentry { height:280px; margin-bottom:37px; }
+#available-classes .hentry { height:280px; margin-bottom:57px; }
 #available-classes .h3 a { color:#21759b; display:block; }
 #available-classes .h5 { color:#a0a0a0; }
 #available-classes .entry { padding-bottom:20px; }
@@ -541,6 +544,7 @@ body.post-type-archive-class #loop-archive-class .entry { padding:10px 15px 30px
 body.single-class .item-wrapper .btn { margin-top:10px; }
 
 body.single-class article .item-wrapper { margin:30px auto; }
+body.single-class article .item-wrapper ol { list-style:decimal; margin-left:20px; }
 body.single-class article .scrollto { padding-left:7px; } 
 body.single-class article .scrollto:hover { background:#f8f8f8; }
 

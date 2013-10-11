@@ -1,6 +1,11 @@
-== 1.0.8 ==
+== 1.0.8 - 1.0.9 ==
 10.10.13
 - complete post type 'team', templates and css
+
+9
+- update for responsive
+- update minor html layout
+- add tinynav
 
 == 1.0.7 ==
 10.09.13

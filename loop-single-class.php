@@ -77,21 +77,22 @@ if ( have_posts() ) {
 
                     echo "<div class=\"item-wrapper\">";
 
-                    if ( isset( $post->sessions[0]->date ) AND ! empty( $post->sessions[0]->date ) AND $post->sessions[0]->date != 'TBD' ) {
-                        echo "<div class=\"h5\">Classes are " . date( 'M jS', strtotime( $post->sessions[0]->date ) ) . " to " . date( 'M jS', strtotime( $post->sessions[3]->date ) ) . " " . date( 'Y', strtotime( $post->sessions[3]->date ) ) . "</div>";
-                    }
-
-                    foreach ( $post->sessions as $k => $post->session ) {
-                        echo "<div class=\"item scrollto\" data-hash=\"#session--" . $post->session->post_name . "\">";
-                        echo ($k+1) . ".&nbsp;&nbsp; <strong>" . $post->session->post_title . ":</strong> ";
-                        if ( isset( $post->session->date ) AND ! empty( $post->session->date ) AND $post->session->date != 'TBD' ) {
-                            echo date( 'M jS', strtotime( $post->session->date ) );
-                        } else {
-                            echo "TBD";
+                        if ( isset( $post->sessions[0]->date ) AND ! empty( $post->sessions[0]->date ) AND $post->sessions[0]->date != 'TBD' ) {
+                            echo "<div class=\"h5\">Classes are " . date( 'M jS', strtotime( $post->sessions[0]->date ) ) . " to " . date( 'M jS', strtotime( $post->sessions[3]->date ) ) . " " . date( 'Y', strtotime( $post->sessions[3]->date ) ) . "</div>";
                         }
-                        echo " <span class=\"sub-text\">@" . $post->session->time . "</span>";
-                        echo "</div>";
-                    }
+                        echo "<ol>";
+                            foreach ( $post->sessions as $k => $post->session ) {
+                                echo "<li class=\"item scrollto\" data-hash=\"#session--" . $post->session->post_name . "\">";
+                                    echo "<strong>" . $post->session->post_title . ":</strong> ";
+                                    if ( isset( $post->session->date ) AND ! empty( $post->session->date ) AND $post->session->date != 'TBD' ) {
+                                        echo date( 'M jS', strtotime( $post->session->date ) );
+                                    } else {
+                                        echo "TBD";
+                                    }
+                                    echo " <span class=\"sub-text\">@" . $post->session->time . "</span>";
+                                echo "</li>";
+                            }
+                        echo "</ol>";
 
                     echo "</div>";
                 }
