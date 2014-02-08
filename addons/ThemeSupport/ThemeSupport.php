@@ -53,7 +53,7 @@ class ThemeSupport {
 		
 		// add_action( 'admin_init', array( &$this, 'admin_init' ) );
 		
-		// add_action( 'wp', array( &$this, 'wp' ) );
+		add_action( 'wp', array( &$this, 'wp' ) );
 		
 		// add_action( 'widgets_init', array( &$this, 'widgets_init' ) );
 
@@ -152,7 +152,7 @@ class ThemeSupport {
 		// add_filter( 'body_class', array( &$this, 'body_class' ) );
 		
 		$this->remove__jetpack_share();
-		$this->remove__polldaddy_show_rating();
+		// $this->remove__polldaddy_show_rating();
 		
 	} // end function wp
 	
@@ -323,15 +323,19 @@ class ThemeSupport {
 	 **/
 	function pre_get_posts( $wp_query ) {
 		
-		if ( $wp_query->query['post_type'] == 'faq' ) {
+		if ( isset( $wp_query->query['post_type'] ) AND ! empty( $wp_query->query['post_type'] ) ) {
 			
-			$wp_query->set( 'orderby', 'menu_order' );
-		
-		} else if ( $wp_query->is_main_query() AND $wp_query->query['post_type'] == 'class' AND $wp_query->is_archive ) {
+			if ( $wp_query->query['post_type'] == in_array( $wp_query->query['post_type'], array( 'faq', 'team' ) ) ) {
+
+				$wp_query->set( 'orderby', 'menu_order' );
+
+			} else if ( $wp_query->is_main_query() AND $wp_query->query['post_type'] == 'class' AND $wp_query->is_archive ) {
+
+				$wp_query->set( 'orderby', 'menu_order' );
+
+			} // end if ( $wp_query->is_main_query() )
 			
-			$wp_query->set( 'orderby', 'menu_order' );
-			
-		} // end if ( $wp_query->is_main_query() )
+		}
 		
 	} // end function pre_get_posts
 	
@@ -364,6 +368,17 @@ class ThemeSupport {
 			$post->_class__session_3 = get_post_meta( $post->ID, '_class__session_3', true );
 			$post->_class__session_4 = get_post_meta( $post->ID, '_class__session_4', true );
 			$post->sessions = array();
+
+
+
+            // Instructor
+            $post->_class__instructor_id = get_post_meta( $post->ID, '_class__instructor_id', true );
+            if ( $post->_class__instructor_id ) {
+                $post->instructor = get_post($post->_class__instructor_id);
+                $post->instructor->_team__short_desc = get_post_meta( $post->_class__instructor_id, '_team__short_desc', true );
+            }
+
+
 			
 			
 			// Session 1
@@ -424,10 +439,41 @@ class ThemeSupport {
 				case 'In Session' :
 					$post->btn_class = 'btn btn-gray';
 					break;
+				case 'Express Interest' :
+					$post->purchase_text = 'Express an Interest in this class';
+					$post->btn_class = 'btn btn-blue';
+					break;
 			} // end switch ( $post->_class_status )
 			
 			
-		} // end if ( $post->post_type == 'class' )
+		} else if ( ! is_admin() AND $post->post_type == 'team' ) {
+			
+			$post->_team__active = get_post_meta( $post->ID, '_team__active', true );
+			$post->_team__site_url = get_post_meta( $post->ID, '_team__site_url', true );
+			$post->_team__twitter_username = get_post_meta( $post->ID, '_team__twitter_username', true );
+			$post->_team__organizer = get_post_meta( $post->ID, '_team__organizer', true );
+			$post->_team__instructor = get_post_meta( $post->ID, '_team__instructor', true );
+			$post->_team__short_desc = get_post_meta( $post->ID, '_team__short_desc', true );
+			
+			
+			if ( $post->_team__active ) {
+				$post->_team__active_text = "<span class=\"title\">Active:</span> <span class=\"icon-ok orange\"></span>";
+			} else {
+				$post->_team__active_text = "<span class=\"title\">Inactive</span>";
+			}
+			$post->_team__site_url_text = "<span class=\"title\">Site:</span> <a href=\"$post->_team__site_url\" target=\"_blank\">$post->_team__site_url</a>";
+			$post->_team__twitter_text = "<span class=\"title\">Twitter:</span> <a href=\"http://twitter.com/$post->_team__twitter_username\" target=\"_blank\">@$post->_team__twitter_username</a>";
+			
+			$post->_team__organizer_text = '';
+			if ( $post->_team__organizer ) {
+				$post->_team__organizer_text = "<span class=\"title\">Organizer:</span> <span class=\"icon-ok orange\"></span>";
+			}
+			$post->_team__instructor_text = '';
+			if ( $post->_team__instructor ) {
+				$post->_team__instructor_text = "<span class=\"title\">Instructor:</span> <span class=\"icon-ok orange\"></span>";
+			}
+			
+		} // end if ( $post->post_type == '' )
 		
 	} // end function the_post 
 	

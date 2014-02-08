@@ -45,8 +45,24 @@ var childTheme = {
 		this.classes();
 		this.singleClass();
 		this.cForms();
+        this.responsiveMenuBtn();
 		
-	}, // end init : function 
+	}, // end init : function
+
+
+
+    /**
+     * responsiveMenuBtn
+     * @version 1.0
+     * @updated 07.25.13
+     **/
+    responsiveMenuBtn : function() {
+
+        jQuery('#menu-primary-menu').tinyNav({
+            header : 'Navigation'
+        });
+
+    }, // end responsiveMenuBtn : function
 	
 	
 	
@@ -120,7 +136,7 @@ var childTheme = {
 	 **/
 	scrollToEnrollment : function() {
 		
-		jQuery('.pre-enroll').click(function(event) {
+		jQuery('.pre-enroll, .express-interest').click(function(event) {
 			event.preventDefault();
 			var click = jQuery(this);
 			jQuery('input#name').focus();
@@ -185,6 +201,7 @@ var childTheme = {
 	mailChimp : function() {
 		
 		jQuery('.widget_mailchimpsf_widget .widget-title-wrap').prepend('<span class="icon-envelope"></span>&nbsp;');
+		jQuery('.widget_mailchimpsf_widget style').remove();
 		
 	}, // end mailChimp : function
 	
