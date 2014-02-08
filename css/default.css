@@ -189,6 +189,7 @@ form .mc_input { width:auto; }
 .label-message { width:auto; display:block; }
 .cformselect { width:auto; }
 .widget_mailchimpsf_widget label { width:70px; }
+<<<<<<< HEAD
 
 
 
@@ -212,6 +213,8 @@ form .mc_input { width:auto; }
 #page .gform_body .gfield_required { color:#af3222; }
 #page .gform_body li li label { cursor:pointer; }
 
+=======
+>>>>>>> 42c470d4581f2f8c0d1ceef9eee354f002e2c343
 
 
 
@@ -276,8 +279,11 @@ Usage - class="img img-name-here" -- allows controlled image sizes for retina di
 #primary-navigation .current-menu-item .sub-menu a,
 #primary-navigation .sub-menu a { padding-bottom:0; }
 
+<<<<<<< HEAD
 .sf-menu li:hover ul { top:2.1em; }
 
+=======
+>>>>>>> 42c470d4581f2f8c0d1ceef9eee354f002e2c343
 #primary-navigation .tinynav { display:none; position:relative; top:15px; max-width:260px; margin:0 auto; }
 
 
