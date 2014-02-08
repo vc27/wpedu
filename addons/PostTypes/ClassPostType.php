@@ -322,15 +322,12 @@ class ClassPostType {
                             'post_type' => 'team',
                         )
                     ),
-<<<<<<< HEAD
 					array(
 						'type' => 'text',
 						'validation' => 'text',
 						'title' => __( 'Form title', 'childtheme' ),
 						'name' => '_class__form_title',
 					),
-=======
->>>>>>> 42c470d4581f2f8c0d1ceef9eee354f002e2c343
 					array(
 						'type' => 'select_cform',
 						'validation' => 'select',

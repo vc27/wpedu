@@ -47,7 +47,6 @@ if ( have_posts() ) {
 								echo "$post->_class__day: ";
 							}
 							
-<<<<<<< HEAD
 							if ( isset( $post->_class__tentative_date ) AND ! empty( $post->_class__tentative_date ) ) {
 								echo $post->_class__tentative_date;
 							}
@@ -69,14 +68,6 @@ if ( have_posts() ) {
 									echo date( 'jS', strtotime( $post->sessions[3]->date ) );
 								}
 							} else if ( ! isset( $post->_class__tentative_date ) OR empty( $post->_class__tentative_date ) ) {
-=======
-							if ( isset( $post->sessions[0]->date ) AND ! empty( $post->sessions[0]->date ) AND $post->sessions[0]->date != 'TBD' ) {
-								echo date( 'M jS', strtotime( $post->sessions[0]->date ) ) . ", ";
-								echo date( 'jS', strtotime( $post->sessions[1]->date ) ) . ", ";
-								echo date( 'jS', strtotime( $post->sessions[2]->date ) ) . " & ";
-								echo date( 'jS', strtotime( $post->sessions[3]->date ) );
-							} else {
->>>>>>> 42c470d4581f2f8c0d1ceef9eee354f002e2c343
 								echo "TBD";
 							}
 								
@@ -100,11 +91,7 @@ if ( have_posts() ) {
 
 
                 // Session Dates
-<<<<<<< HEAD
                 if ( ( isset( $post->_class__show_session ) AND $post->_class__show_session == 1 ) AND isset( $post->sessions ) AND is_array( $post->sessions ) ) {
-=======
-                if ( isset( $post->sessions ) AND is_array( $post->sessions ) ) {
->>>>>>> 42c470d4581f2f8c0d1ceef9eee354f002e2c343
 
                     echo "<div class=\"item-wrapper\">";
 
@@ -120,13 +107,9 @@ if ( have_posts() ) {
                                     } else {
                                         echo "TBD";
                                     }
-<<<<<<< HEAD
 									if ( isset( $post->session->time ) AND ! empty( $post->session->time ) ) {
 										echo " <span class=\"sub-text\">@" . $post->session->time . "</span>";
 									}
-=======
-                                    echo " <span class=\"sub-text\">@" . $post->session->time . "</span>";
->>>>>>> 42c470d4581f2f8c0d1ceef9eee354f002e2c343
                                 echo "</li>";
                             }
                         echo "</ol>";
@@ -199,11 +182,7 @@ if ( have_posts() ) {
 
 
             // Session Loop
-<<<<<<< HEAD
 			if ( isset( $post->_class__show_session ) AND $post->_class__show_session == 1 ) {
-=======
-			if ( $post->have_session_1 OR $post->have_session_2 OR $post->have_session_3 OR $post->have_session_4 ) {
->>>>>>> 42c470d4581f2f8c0d1ceef9eee354f002e2c343
 				
 				if ( $post->have_session_1 OR $post->have_session_2 OR $post->have_session_3 OR $post->have_session_4 ) {
 
